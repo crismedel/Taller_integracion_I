@@ -1,0 +1,280 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}/*mejorar esta practica con normalize.css(desargar y poner en una hoja de estilo aparte*/
+/**/
+/*mientras falta enlazar las paginas del menu una por una. Pondre una seudoclase desplazamiento suave*/
+:root{
+    scroll-behavior: smooth ;
+}
+
+body{
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    font-family: 'Sansita', sans-serif;
+}
+
+/*modifica todos las clase contenedor de cada section*/
+.contenedor{
+    width: 90%;
+    max-width: 1200px;
+    overflow: hidden;
+    margin:auto;
+    padding: 60px 0;/*espaciado de los elementos*/
+}
+/**/
+header{
+     height: 100vh;/*del 100% de la pantalla */
+     background-image: linear-gradient(to top, rgba(178, 36, 239, 0.2) 0%, rgba(117, 122, 255, 0.2) 100%), url(../img/dormitorio.jpg);
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+     background-position: center;
+}
+/* */
+.head{
+    text-align: center;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column ;
+    color:white;
+
+}
+/*icono del menu de navegacion estara fijo en toda la pagina, tambien se ve la manita al poner el mouse sobre el icono*/
+.house{
+    position: fixed;  /*fijo en toda la pagina*/
+    top: 30px;
+    right: 30px;
+    background: rgb(248, 248, 248);
+    width: 50px;
+    height: 50px;
+    cursor: pointer;/*para ver la manita cuando se posicione sobre el icono*/
+    border-radius: 24px;    
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+.menu-navegacion{
+    position: fixed;
+    top:0;
+    right:0;
+    width:30vw;/*ando de la pagina*/
+    height:100%;
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;/*reparta espacio de forma equitativa*/
+    align-items: center;
+    transition: transform .3s ease-in-out;
+    transform: translate(110%);
+    box-shadow:0 0 6px rgba(0, 0, 0,.5);
+
+}
+ 
+
+.elemento{
+    transform: translate(0);
+}
+.menu-navegacion a{
+    color: white;
+    text-decoration: none;
+}
+.titulo{
+ font-size: 60px;
+ margin-bottom: 15px ;
+}
+.copy{
+    font-weight: 300;
+    font-size: 25px;
+}
+/*sugerencias*/
+.subtitulo{
+    text-align: center;
+    font-weight: 300;
+    color:#9f8ad0;
+    margin-bottom: 40px;
+    font-size: 40px;
+}
+.contenedor-sugerencias{
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    flex-wrap: wrap; /*si no cabe algo en la mismma linea lo corra abajo*/
+}
+.contenedor-sugerencias img{
+     width: 40%;
+}
+
+.a-sugerencias{
+    width: 45%;
+}
+.b-sugerencias{
+    margin-bottom: 20px;
+}
+.n-sugerencias{
+    margin-bottom: 7px;
+    color:#9f8ad0;
+}
+.number{
+    display:inline-block;
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color:white;
+    text-align: center;
+    font-weight: 700;
+    line-height: 30px;
+    margin-right: 5px;
+
+}
+/*estilos de pieza*/
+.qs{
+    background:#f2f2f2;
+}
+.contenedor-qs{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.img-qs{
+    object-fit: cover;
+    width: 30%;
+    display: block;
+    margin-bottom: 15px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .7);
+    cursor: pointer;    
+}
+.imagen-close{
+    position: fixed;
+    background: rgba(0, 0, 0, .7);
+    width: 100% ;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(100%);
+    transition: transform .2s ease-in-out;
+}
+.show{
+    transform: translate(0);
+}
+.agregar-imagen{
+    object-fit: cover;
+    width: 60%;
+    border-radius: 10px;
+    transform: scale(0);
+    transition: transform .3s .2s;
+}
+.showImage{
+    transform: scale(1);
+}
+.close{
+    position:absolute;
+    top:15px;
+    right: 15px;
+    width: 40px;
+    cursor:pointer;
+
+}
+/* estilos de section equipo*/
+.equipo{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap:wrap;
+
+}
+.cont-equipo{
+    width: 30%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cont-equipo img{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+.n-equipo{
+    display: inline-block;
+    margin-top: 20px;
+    width: 100%;
+    font-weight: 400;
+}
+/* estilos de footer*/
+footer{
+    background:#9f8ad0;
+    padding-bottom: 0.1px;
+}
+.footer-content{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 60px;
+    padding-bottom: 40px;
+
+}
+.contact-us{
+    width: 40%;
+    color:white;
+}
+.marca{
+    font-weight: 500;
+    font-size: 40px ;
+}
+.marca+p{
+   font-weight: 500;
+}
+.social-media{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}  
+.social-media-icon{
+    display: inline-block;
+    margin-left: 20px;
+    width: 60px;
+    height:60px;
+    border: 1px solid white;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+}
+.social-media-icon:hover{
+    background: white;
+    color:#7649a2;
+}
+.social-media-icon i{
+    font-size: 30px;
+    line-height:60px;    
+}
+#line{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 2px;
+    background: white;
+    margin-bottom: 60px;
+    
+}
+.form-contact{
+    width: auto;
+    height: 50px;
+    top:50%;
+    left:50%;
+    
+    box-shadow: 7px 13px 37px rgba(0,0,0);
+    color: white;
+    display:flex;
+    justify-content: space-evenly;
+    align-items:center;
+    flex-wrap:wrap;
+    background:linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    
+    
+}
+
