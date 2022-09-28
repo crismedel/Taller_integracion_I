@@ -1,0 +1,209 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Elementos del header (menu de navegacion)*/
+header {
+    background-color: gray;
+    position: relative;
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgoldenrodyellow;
+    width: 100%;
+    padding-right: 30px ;
+}
+.menu a {
+    padding: 30px;
+    text-decoration: none;
+    color: black;
+    transition: .5s;
+}
+
+a:hover {
+    background-color: aquamarine;
+}
+
+#barra-buscador {
+    margin-left: 100px;
+    height: 30px;
+    width: 300px;
+    border-radius: 4px;
+}
+
+#boton-buscador {
+    width: 25px;
+    height: 25px;
+    margin-right: 50px;
+}
+
+/* div main y div form*/
+main {
+    background: rgba(0, 0, 0, .3);
+}
+.main-div-soporte{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    position: relative;
+    top: 100px;/*espacio entre header y footer */
+    padding-bottom: 100px;
+    margin-left: 550px;
+    
+}
+
+.flex-divrow-soporte,input, label { /*elementos en fila dentro del formulario (labels incluidas)*/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/*formulario en si*/
+
+
+
+input, select, textarea { /*formato general de los inputs*/
+    width: 450px;
+    height: 30px;
+}
+
+#mensaje { /*textarea pero aparte */
+    height: 250px;
+}
+
+
+/*Ventana emergente del login*/
+
+.contenedor-popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    position: fixed;
+    top: 250px;/*espacio entre header y footer */
+    margin-bottom: 100px;/*espacio entre header y footer */
+    margin-left: 550px;
+    visibility: hidden; /*modificar con js*/
+}
+
+
+.ventana-emergente-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-color: red;
+    border-radius: 5px;
+    max-height: 180px;
+}
+
+.flex-divrow-popup{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.flex-divrow-popup > p {
+    margin-top: 20px;
+    margin-right: 140px;
+
+}
+
+.flex-divrow-popup > button > img {
+    width: 20px;
+    height: 20px;
+    
+}
+
+.flex-divrow-popup > a {
+    padding-right: 7px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* estilos de footer solucionarlo*/
+footer{
+    background:#9f8ad0;
+    padding-bottom: 0.1px;
+    position: relative;
+}
+.footer-content{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 60px;
+    padding-bottom: 40px;
+
+}
+.contact-us{
+    width: 40%;
+    color:white;
+}
+.marca{
+    font-weight: 500;
+    font-size: 40px ;
+}
+.marca+p{
+   font-weight: 500;
+}
+.social-media{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}  
+.social-media-icon{
+    display: inline-block;
+    margin-left: 20px;
+    width: 60px;
+    height:60px;
+    border: 1px solid white;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+}
+.social-media-icon:hover{
+    background: white;
+    color:#7649a2;
+}
+.social-media-icon i{
+    font-size: 30px;
+    line-height:60px;    
+}
+#line{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 2px;
+    background: white;
+    margin-bottom: 60px;
+    
+}
