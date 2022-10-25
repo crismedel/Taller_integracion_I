@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-10-2022 a las 06:45:50
+-- Tiempo de generación: 26-10-2022 a las 01:27:42
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -33,7 +33,7 @@ CREATE TABLE `arrendador` (
   `Nombre` char(45) DEFAULT NULL,
   `Apellidos` char(45) DEFAULT NULL,
   `Edad` int(2) DEFAULT NULL,
-  `Genero` enum('Hombre','Mujer') DEFAULT NULL
+  `Genero` enum('Hombre','Mujer','Otro') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -46,10 +46,26 @@ CREATE TABLE `arriendo` (
   `ID_Arriendo` int(11) NOT NULL,
   `Rut_Arrendador` int(9) DEFAULT NULL,
   `ID_Publicacion` int(11) DEFAULT NULL,
+  `Titulo_Arriendo` char(255) DEFAULT NULL,
   `Direccion` char(50) DEFAULT NULL,
   `Num_Depto` int(4) DEFAULT NULL,
   `Tipo_Arriendo` char(30) DEFAULT NULL,
+  `Cant_Habitaciones` int(5) DEFAULT NULL,
   `Valor` int(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `ID_Publicacion` int(11) DEFAULT NULL,
+  `ID_Comentario` int(11) NOT NULL,
+  `Nombre_Usuario` char(35) DEFAULT NULL,
+  `Comentario` char(255) DEFAULT NULL,
+  `Fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -79,7 +95,7 @@ CREATE TABLE `estudiante` (
   `Nombre` char(45) DEFAULT NULL,
   `Apellidos` char(45) DEFAULT NULL,
   `Edad` int(2) DEFAULT NULL,
-  `Genero` enum('Hombre','Mujer') DEFAULT NULL
+  `Genero` enum('Hombre','Mujer','Otro') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,10 +123,26 @@ CREATE TABLE `favoritos` (
 CREATE TABLE `publicacion` (
   `ID_Cuenta` int(11) DEFAULT NULL,
   `ID_Publicacion` int(11) NOT NULL,
+  `Titulo_Arriendo` char(255) DEFAULT NULL,
   `Direccion` char(50) DEFAULT NULL,
   `Num_Depto` int(4) DEFAULT NULL,
   `Tipo_Arriendo` char(30) DEFAULT NULL,
+  `Cant_Habitaciones` int(5) DEFAULT NULL,
   `Valor` int(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `soporte`
+--
+
+CREATE TABLE `soporte` (
+  `ID_Soporte` int(11) NOT NULL,
+  `Correo` char(45) DEFAULT NULL,
+  `Motivo` char(255) DEFAULT NULL,
+  `Asunto` char(255) DEFAULT NULL,
+  `Mensaje` char(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -131,6 +163,13 @@ ALTER TABLE `arriendo`
   ADD PRIMARY KEY (`ID_Arriendo`),
   ADD KEY `ID_Publicacion` (`ID_Publicacion`),
   ADD KEY `Rut_Arrendador` (`Rut_Arrendador`);
+
+--
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`ID_Comentario`),
+  ADD KEY `ID_Publicacion` (`ID_Publicacion`);
 
 --
 -- Indices de la tabla `cuenta`
@@ -157,8 +196,13 @@ ALTER TABLE `favoritos`
 -- Indices de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  ADD PRIMARY KEY (`ID_Publicacion`),
-  ADD KEY `ID_Cuenta` (`ID_Cuenta`);
+  ADD PRIMARY KEY (`ID_Publicacion`);
+
+--
+-- Indices de la tabla `soporte`
+--
+ALTER TABLE `soporte`
+  ADD PRIMARY KEY (`ID_Soporte`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -169,6 +213,12 @@ ALTER TABLE `publicacion`
 --
 ALTER TABLE `arriendo`
   MODIFY `ID_Arriendo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `ID_Comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `cuenta`
@@ -189,6 +239,12 @@ ALTER TABLE `publicacion`
   MODIFY `ID_Publicacion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `soporte`
+--
+ALTER TABLE `soporte`
+  MODIFY `ID_Soporte` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -206,6 +262,12 @@ ALTER TABLE `arriendo`
   ADD CONSTRAINT `arriendo_ibfk_2` FOREIGN KEY (`Rut_Arrendador`) REFERENCES `arrendador` (`Rut_Arrendador`);
 
 --
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`ID_Publicacion`) REFERENCES `publicacion` (`ID_Publicacion`);
+
+--
 -- Filtros para la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
@@ -217,12 +279,6 @@ ALTER TABLE `estudiante`
 ALTER TABLE `favoritos`
   ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`ID_Publicacion`) REFERENCES `publicacion` (`ID_Publicacion`),
   ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`Rut_Estudiante`) REFERENCES `estudiante` (`Rut_Estudiante`);
-
---
--- Filtros para la tabla `publicacion`
---
-ALTER TABLE `publicacion`
-  ADD CONSTRAINT `publicacion_ibfk_1` FOREIGN KEY (`ID_Cuenta`) REFERENCES `cuenta` (`ID_Cuenta`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
