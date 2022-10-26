@@ -1,6 +1,6 @@
 <?php
 
 $servername = "localhost";
-$username = "test";
-$password = "test";
-$dbname = "test";
+$username = "root";
+$password = "";
+$dbname = "integracion";

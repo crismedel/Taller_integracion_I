@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/Arriendos-estilos.css">
+    <script src="js/Arriendos.js"></script>
     <title>Arriendos</title>
 </head>
 
@@ -23,6 +24,9 @@
     <main>
         <div class="main-div">
             <div class="filtros">
+
+                <form action="" method="post" id="formulario-filtra-arriendos" ></form>
+
                 <h2>Filtros</h2>
 
                 <div class="flex-divcolumn-filtros">
@@ -30,9 +34,9 @@
                 </div>
 
                 <div class="flex-divrow-filtros">
-                    <input type="text" placeholder="Min">
+                    <input type="text" placeholder="Min" name="minimo" form="formulario-filtra-arriendos">
                     <span>-</span>
-                    <input type="text" placeholder="Max">
+                    <input type="text" placeholder="Max" name="maximo" form="formulario-filtra-arriendos">
                 </div>
 
                 <div class="flex-divrow-filtros">
@@ -40,21 +44,21 @@
                 </div>
 
                 <div class="flex-filtros-boton">
-                    <button>
+                    <button class="current-button-selected">
                         <div>
-                            <img src="img/inicio.svg" alt="">
+                            <img src="img/inicio.svg" alt="" name="departamento">
                         </div>
                         <span>Departamento</span>
                     </button>
-                    <button>
+                    <button class="current-button-selected">
                         <div>
-                            <img src="img/inicio.svg" alt="">
+                            <img src="img/inicio.svg" alt="" name="casa">
                         </div>
                         <span>Casa</span>
                     </button>
-                    <button>
+                    <button class="current-button-selected">
                         <div>
-                            <img src="img/inicio.svg" alt="">
+                            <img src="img/inicio.svg" alt="" name="pieza">
                         </div>
                         <span>Pieza</span>
                     </button>
@@ -65,17 +69,17 @@
                         <span>Cantidad Habitaciones</span>
                         <div class="flex-divrow-filtros">
                             <span>1</span>
-                            <input type="radio" name="" id="">
+                            <input type="radio" name="canthabitacion" id="unahabitacion" form="formulario-filtra-arriendos" value="1">
                             <span>2</span>
-                            <input type="radio" name="" id="">
+                            <input type="radio" name="canthabitacion" id="doshabitacion" form="formulario-filtra-arriendos" value="2">
                             <span>3</span>
-                            <input type="radio" name="" id="">
+                            <input type="radio" name="canthabitacion" id="treshabitacion" form="formulario-filtra-arriendos" value="3">
                             <span>otro</span>
-                            <input type="radio" name="" id="">
+                            <input type="radio" name="canthabitacion" id="otrohabitacion" form="formulario-filtra-arriendos" value="4">
                         </div>
                     </div>
                     <div class="flex-divcolumn-filtros">
-                        <button id="cargar-resultados">
+                        <button id="cargar-resultados" type="submit" form="formulario-filtra-arriendos">
                             <span>Cargar Resultados</span>
                         </button>
                     </div>
@@ -83,40 +87,24 @@
             </div>
 
             <div class="main-div-publicaciones">
-                <div class="grid-div-publicaciones">
+                <div class="grid-div-publicaciones" id="principal-grid-publicaciones">
                     <div class="imagen-publicacion"> <!--aqui se iran añadiendo las publicaciones esto es temporal-->
-                        <img src="img/inicio.svg" alt="">
+                        <img src="img/inicio.svg" alt="" class="imagen-real-arriendo">
                     </div>
                     <div class="info-publicacion">
-                        <p>Se arrienda departamento en fundo el carmen</p>
-                        <p>Departamento</p>
-                        <p>300000</p>
-                        <p>1 habitacion</p>
-                    </div>
-                    <div class="imagen-publicacion">
-                        <img src="img/inicio.svg" alt="">
-                    </div>
-                    <div class="info-publicacion">
-                        <p>Se arrienda departamento en fundo el carmen</p>
-                        <p>Departamento</p>
-                        <p>300000</p>
-                        <p>1 habitacion</p>
-                    </div>
-                    <div class="imagen-publicacion">
-                        <img src="img/inicio.svg" alt="">
-                    </div>
-                    <div class="info-publicacion">
-                        <p>Se arrienda departamento en fundo el carmen</p>
-                        <p>Departamento</p>
-                        <p>300000</p>
-                        <p>1 habitacion</p>
+                        <p class="parrafo-info">titulo</p>
+                        <p class="parrafo-info">direccion</p>
+                        <p class="parrafo-info">cant habitaciones</p>
+                        <p class="parrafo-info">valor</p>
                     </div>
                 </div>
             </div>
         </div>
 
 
+        <div id="pruebaxd">
 
+        </div>
 
         <div class="contenedor-popup">
             <div class="ventana-emergente-login">
@@ -168,5 +156,6 @@
         <div id="line"></div>
     </footer>
     <script src="js/popup.js"></script>
+    <script src="js/variablesArriendos.js"></script>
 </body>
 </html>

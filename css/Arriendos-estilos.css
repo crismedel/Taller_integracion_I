@@ -44,6 +44,7 @@ a:hover {
 
 /*main div*/
 
+
 .main-div {
     display: grid;
     grid-template-columns: 30% auto;
@@ -191,13 +192,14 @@ p {
 footer{
     background:#9f8ad0;
     padding-bottom: 0.1px;
+    margin-top: 500px;
 }
 .footer-content{
     display:flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding-top: 60px;
+    padding-top: 30px;
     padding-bottom: 40px;
 
 }
