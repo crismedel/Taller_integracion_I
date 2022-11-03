@@ -8,7 +8,7 @@ $error_nombre = $error_apellido = $error_correo = $error_cel = $error_genero = $
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["nombre"]))){
         $error_nombre = "Ingrese su nombre.";
-    } elseif(!preg_match('/^[a-zA-Z]+$/', trim($_POST["nombre"]))){
+    } elseif(!preg_match('/^[a-zA-Zá-ú-Á-Ú]+$/', trim($_POST["nombre"]))){
         $error_nombre = "El nombre sólamente puede contener letras.";
     } else {
         $nombre = trim($_POST["nombre"]);

@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if(isset($_SESSION["inicio"]) && $_SESSION["inicio"] === true){
+    header("location: ../index.php");
+    exit;
+}
+
 require_once "../Conex.inc";
 
 $correo = $contraseña = "";

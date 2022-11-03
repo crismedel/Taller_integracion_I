@@ -2,6 +2,12 @@
 
 session_start();
 
+if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
+    $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
+} else {
+    $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +24,7 @@ session_start();
             <a href="Index.php">Inicio</a>
             <a href="Arriendos.php">Arriendos</a> 
             <a href="Soporte.php">Soporte</a>
-            <a href="./registro/login.php" class="boton-sesion">Iniciar Sesión</a>
+            <?php echo $cuenta; ?>
             <input id="barra-buscador" type="search" placeholder="Buscar Arriendos..">
             <input id="boton-buscador" type="image" src="img/lupa.png">
         </nav>
