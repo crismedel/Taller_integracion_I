@@ -91,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $sql = "INSERT INTO cuenta (Nombre, Apellido, Fecha_Nacimiento, Genero, Correo, Contraseña, Num_Contacto, Tipo_Usuario) VALUES (?, ?, ?, ?, ? ,? ,?, ?)";
 
         if($stmt = $db->prepare($sql)){
-            $stmt->bind_param("ssssssss", $param_nombre, $param_apellido, $param_fecha_nacimiento, $para_genero, $param_correo, $param_contraseña, $param_cel, $param_tipo_usuario);
+            $stmt->bind_param("ssssssss", $param_nombre, $param_apellido, $param_fecha_nacimiento, $param_genero, $param_correo, $param_contraseña, $param_cel, $param_tipo_usuario);
 
             $param_nombre = $nombre;
             $param_apellido = $apellido;
@@ -125,6 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Regístrate</title>
 </head>
 <body>
+    <input type="button" onclick="document.location='../index.php'" value="Volver">
     <h2>Regístrate</h2>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
@@ -181,7 +182,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <span><?php echo $error_confirmar_contraseña; ?></span><br>
         </div>
         <div>
-            <input type="submit" value="Register">
+            <input type="submit" value="Registrarse">
         </div>
         <p>¿Tienes una cuenta? <a href="login.php">Ingresa una aquí</a>.</p>
     </form>

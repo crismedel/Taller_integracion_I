@@ -80,6 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Iniciar Sesión</title>
 </head>
 <body>
+    <input type="button" onclick="document.location='../index.php'" value="Volver">
     <h2>Iniciar Sesión</h2>
 
     <?php 
@@ -98,9 +99,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <label>Contraseña</label><br>
             <input type="password" name="contraseña"><br>
             <span><?php echo $error_contraseña; ?></span>
+            <p><a href="reset_contraseña.php">¿Olvidaste tu contraseña?</a></p>
         </div>
         <div>
-            <input type="submit" value="Login">
+            <input type="submit" value="Iniciar Sesión">
         </div>
         <p>¿No tienes una cuenta? <a href="registro.php">Crea una aquí</a>.</p>
     </form>
