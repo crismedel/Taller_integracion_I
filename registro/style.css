@@ -22,7 +22,7 @@ input[type=text], input[type=password], input[type=email], input[type=date], inp
   box-sizing: border-box;
 }
 
-input #contraseña {
+#contraseña, #nueva_contraseña, #confirmar_contraseña {
   width: 90%;
   padding: 12px 20px;
   margin: 8px 0;

@@ -85,9 +85,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Cambiar Contraseña</title>
 </head>
 <body>
+    <script type="text/javascript">
+    function mostrarPassword(){
+		const cambio = document.getElementsByClassName("contraseña");
+		if(cambio[0].type == "password" && cambio[1].type == "password"){
+			cambio[0].type = "text";
+            cambio[1].type = "text";
+			$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+		}else{
+			cambio[0].type = "password";
+            cambio[1].type = "password";
+			$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+		}
+	}
+    </script>
+
     <input type="button" onclick="document.location='../index.php'" value="Volver">
     <h2>Cambiar contraseña</h2>
 
@@ -99,12 +116,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <div>
             <label>Nueva Contraseña</label><br>
-            <input type="password" name="nueva_contraseña"><br>
+            <input type="password" class="contraseña" name="nueva_contraseña"><br>
             <span><?php echo $error_nueva_contraseña; ?></span>
         </div>
         <div>
             <label>Confirmar Contraseña</label><br>
-            <input type="password" name="confirmar_contraseña"><br>
+            <input type="password" class="contraseña" name="confirmar_contraseña">
+            <button id="mostrar_contraseña" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button><br>
             <span><?php echo $error_confirmar_contraseña; ?></span><br>
         </div>
         <div>

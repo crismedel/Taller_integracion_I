@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <script type="text/javascript">
-    function mostrarPassword(){
+    function mostrar_contraseña(){
 		var cambio = document.getElementById("contraseña");
 		if(cambio.type == "password"){
 			cambio.type = "text";
@@ -92,7 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			cambio.type = "password";
 			$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
 		}
-	} 
+	}
     </script>
 
     <input type="button" onclick="document.location='../index.php'" value="Volver">
@@ -113,7 +113,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div>
             <label>Contraseña</label><br>
             <input type="password" id="contraseña" name="contraseña">
-            <button id="mostrar_contraseñas" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button><br>
+            <button id="mostrar_contraseñas" type="button" onclick="mostrar_contraseña()"> <span class="fa fa-eye-slash icon"></span> </button><br>
             <span><?php echo $error_contraseña; ?></span>
             <p><a href="reset_contraseña.php">¿Olvidaste tu contraseña?</a></p>
         </div>
