@@ -77,9 +77,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Iniciar Sesión</title>
 </head>
 <body>
+    <script type="text/javascript">
+    function mostrarPassword(){
+		var cambio = document.getElementById("contraseña");
+		if(cambio.type == "password"){
+			cambio.type = "text";
+			$('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+		}else{
+			cambio.type = "password";
+			$('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+		}
+	} 
+    </script>
+
     <input type="button" onclick="document.location='../index.php'" value="Volver">
     <h2>Iniciar Sesión</h2>
 
@@ -97,7 +112,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <div>
             <label>Contraseña</label><br>
-            <input type="password" name="contraseña"><br>
+            <input type="password" id="contraseña" name="contraseña">
+            <button id="mostrar_contraseñas" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button><br>
             <span><?php echo $error_contraseña; ?></span>
             <p><a href="reset_contraseña.php">¿Olvidaste tu contraseña?</a></p>
         </div>

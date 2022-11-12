@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bind_param("ss", $param_contraseña, $param_correo);
             
             $param_contraseña = password_hash($nueva_contraseña, PASSWORD_DEFAULT);
-            $param_correo = $_SESSION["correo"];
+            $param_correo = $correo;
             
             if($stmt->execute()){
                 session_destroy();
