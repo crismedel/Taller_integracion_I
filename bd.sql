@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2022 a las 01:27:42
+-- Tiempo de generación: 08-11-2022 a las 23:20:37
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -20,39 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pagina_web`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `arrendador`
---
-
-CREATE TABLE `arrendador` (
-  `ID_Cuenta` int(11) DEFAULT NULL,
-  `Rut_Arrendador` int(9) NOT NULL,
-  `Nombre` varchar(45) DEFAULT NULL,
-  `Apellidos` varchar(45) DEFAULT NULL,
-  `Edad` int(2) DEFAULT NULL,
-  `Genero` enum('Hombre','Mujer','Otro') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `arriendo`
---
-
-CREATE TABLE `arriendo` (
-  `ID_Arriendo` int(11) NOT NULL,
-  `Rut_Arrendador` int(9) DEFAULT NULL,
-  `ID_Publicacion` int(11) DEFAULT NULL,
-  `Titulo_Arriendo` varchar(255) DEFAULT NULL,
-  `Direccion` varchar(50) DEFAULT NULL,
-  `Num_Depto` int(4) DEFAULT NULL,
-  `Tipo_Arriendo` varchar(30) DEFAULT NULL,
-  `Cant_Habitaciones` int(5) DEFAULT NULL,
-  `Valor` int(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -76,26 +43,14 @@ CREATE TABLE `comentarios` (
 
 CREATE TABLE `cuenta` (
   `ID_Cuenta` int(11) NOT NULL,
-  `Nombre_Usuario` varchar(35) DEFAULT NULL,
+  `Nombre` varchar(45) DEFAULT NULL,
+  `Apellido` varchar(45) DEFAULT NULL,
+  `Fecha_Nacimiento` date DEFAULT NULL,
+  `Genero` enum('Hombre','Mujer','No Especifica') NOT NULL,
   `Correo` varchar(45) DEFAULT NULL,
   `Contraseña` varchar(255) DEFAULT NULL,
-  `Num_Contacto` int(9) DEFAULT NULL,
+  `Num_Contacto` varchar(15) DEFAULT NULL,
   `Tipo_usuario` enum('Arrendador','Estudiante') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `estudiante`
---
-
-CREATE TABLE `estudiante` (
-  `ID_Cuenta` int(11) DEFAULT NULL,
-  `Rut_Estudiante` int(9) NOT NULL,
-  `Nombre` varchar(45) DEFAULT NULL,
-  `Apellidos` varchar(45) DEFAULT NULL,
-  `Edad` int(2) DEFAULT NULL,
-  `Genero` enum('Hombre','Mujer','Otro') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -105,12 +60,14 @@ CREATE TABLE `estudiante` (
 --
 
 CREATE TABLE `favoritos` (
-  `Rut_Estudiante` int(9) DEFAULT NULL,
+  `ID_Cuenta` int(11) DEFAULT NULL,
   `ID_Favorito` int(11) NOT NULL,
   `ID_Publicacion` int(11) DEFAULT NULL,
   `Direccion` varchar(50) DEFAULT NULL,
   `Num_Depto` int(4) DEFAULT NULL,
   `Tipo_Arriendo` varchar(30) DEFAULT NULL,
+  `Cant_Habitaciones` int(5) DEFAULT NULL,
+  `Descripcion` varchar(255) DEFAULT NULL,
   `Valor` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -128,6 +85,7 @@ CREATE TABLE `publicacion` (
   `Num_Depto` int(4) DEFAULT NULL,
   `Tipo_Arriendo` varchar(30) DEFAULT NULL,
   `Cant_Habitaciones` int(5) DEFAULT NULL,
+  `Descripcion` varchar(255) DEFAULT NULL,
   `Valor` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -150,21 +108,6 @@ CREATE TABLE `soporte` (
 --
 
 --
--- Indices de la tabla `arrendador`
---
-ALTER TABLE `arrendador`
-  ADD PRIMARY KEY (`Rut_Arrendador`),
-  ADD KEY `ID_Cuenta` (`ID_Cuenta`);
-
---
--- Indices de la tabla `arriendo`
---
-ALTER TABLE `arriendo`
-  ADD PRIMARY KEY (`ID_Arriendo`),
-  ADD KEY `ID_Publicacion` (`ID_Publicacion`),
-  ADD KEY `Rut_Arrendador` (`Rut_Arrendador`);
-
---
 -- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
@@ -178,25 +121,18 @@ ALTER TABLE `cuenta`
   ADD PRIMARY KEY (`ID_Cuenta`);
 
 --
--- Indices de la tabla `estudiante`
---
-ALTER TABLE `estudiante`
-  ADD PRIMARY KEY (`Rut_Estudiante`),
-  ADD KEY `ID_Cuenta` (`ID_Cuenta`);
-
---
 -- Indices de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
   ADD PRIMARY KEY (`ID_Favorito`),
-  ADD KEY `ID_Publicacion` (`ID_Publicacion`),
-  ADD KEY `Rut_Estudiante` (`Rut_Estudiante`);
+  ADD KEY `ID_Cuenta` (`ID_Cuenta`);
 
 --
 -- Indices de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  ADD PRIMARY KEY (`ID_Publicacion`);
+  ADD PRIMARY KEY (`ID_Publicacion`),
+  ADD KEY `ID_Cuenta` (`ID_Cuenta`);
 
 --
 -- Indices de la tabla `soporte`
@@ -209,12 +145,6 @@ ALTER TABLE `soporte`
 --
 
 --
--- AUTO_INCREMENT de la tabla `arriendo`
---
-ALTER TABLE `arriendo`
-  MODIFY `ID_Arriendo` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
@@ -224,7 +154,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
-  MODIFY `ID_Cuenta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Cuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `favoritos`
@@ -249,36 +179,23 @@ ALTER TABLE `soporte`
 --
 
 --
--- Filtros para la tabla `arrendador`
---
-ALTER TABLE `arrendador`
-  ADD CONSTRAINT `arrendador_ibfk_1` FOREIGN KEY (`ID_Cuenta`) REFERENCES `cuenta` (`ID_Cuenta`);
-
---
--- Filtros para la tabla `arriendo`
---
-ALTER TABLE `arriendo`
-  ADD CONSTRAINT `arriendo_ibfk_1` FOREIGN KEY (`ID_Publicacion`) REFERENCES `publicacion` (`ID_Publicacion`),
-  ADD CONSTRAINT `arriendo_ibfk_2` FOREIGN KEY (`Rut_Arrendador`) REFERENCES `arrendador` (`Rut_Arrendador`);
-
---
 -- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`ID_Publicacion`) REFERENCES `publicacion` (`ID_Publicacion`);
 
 --
--- Filtros para la tabla `estudiante`
---
-ALTER TABLE `estudiante`
-  ADD CONSTRAINT `estudiante_ibfk_1` FOREIGN KEY (`ID_Cuenta`) REFERENCES `cuenta` (`ID_Cuenta`);
-
---
 -- Filtros para la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`ID_Publicacion`) REFERENCES `publicacion` (`ID_Publicacion`),
-  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`Rut_Estudiante`) REFERENCES `estudiante` (`Rut_Estudiante`);
+  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`ID_Favorito`) REFERENCES `publicacion` (`ID_Publicacion`),
+  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`ID_Cuenta`) REFERENCES `cuenta` (`ID_Cuenta`);
+
+--
+-- Filtros para la tabla `publicacion`
+--
+ALTER TABLE `publicacion`
+  ADD CONSTRAINT `publicacion_ibfk_1` FOREIGN KEY (`ID_Cuenta`) REFERENCES `cuenta` (`ID_Cuenta`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
