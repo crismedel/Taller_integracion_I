@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2022 a las 19:09:59
+-- Tiempo de generación: 08-11-2022 a las 23:20:37
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `comentarios` (
   `ID_Publicacion` int(11) DEFAULT NULL,
   `ID_Comentario` int(11) NOT NULL,
-  `Nombre_Usuario` char(35) DEFAULT NULL,
-  `Comentario` char(255) DEFAULT NULL,
+  `Nombre_Usuario` varchar(35) DEFAULT NULL,
+  `Comentario` varchar(255) DEFAULT NULL,
   `Fecha` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -43,13 +43,13 @@ CREATE TABLE `comentarios` (
 
 CREATE TABLE `cuenta` (
   `ID_Cuenta` int(11) NOT NULL,
-  `Nombre` char(45) DEFAULT NULL,
-  `Apellido` char(45) DEFAULT NULL,
+  `Nombre` varchar(45) DEFAULT NULL,
+  `Apellido` varchar(45) DEFAULT NULL,
   `Fecha_Nacimiento` date DEFAULT NULL,
-  `Genero` enum('Hombre','Mujer','Otro') DEFAULT NULL,
-  `Correo` char(45) DEFAULT NULL,
-  `Contraseña` char(16) DEFAULT NULL,
-  `Num_Contacto` int(9) DEFAULT NULL,
+  `Genero` enum('Hombre','Mujer','No Especifica') NOT NULL,
+  `Correo` varchar(45) DEFAULT NULL,
+  `Contraseña` varchar(255) DEFAULT NULL,
+  `Num_Contacto` varchar(15) DEFAULT NULL,
   `Tipo_usuario` enum('Arrendador','Estudiante') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -62,13 +62,7 @@ CREATE TABLE `cuenta` (
 CREATE TABLE `favoritos` (
   `ID_Cuenta` int(11) DEFAULT NULL,
   `ID_Favorito` int(11) NOT NULL,
-  `ID_Publicacion` int(11) DEFAULT NULL,
-  `Direccion` char(50) DEFAULT NULL,
-  `Num_Depto` int(4) DEFAULT NULL,
-  `Tipo_Arriendo` char(30) DEFAULT NULL,
-  `Cant_Habitaciones` int(5) DEFAULT NULL,
-  `Descripcion` char(255) DEFAULT NULL,
-  `Valor` int(6) DEFAULT NULL
+  `ID_Publicacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -80,12 +74,12 @@ CREATE TABLE `favoritos` (
 CREATE TABLE `publicacion` (
   `ID_Cuenta` int(11) DEFAULT NULL,
   `ID_Publicacion` int(11) NOT NULL,
-  `Titulo_Arriendo` char(255) DEFAULT NULL,
-  `Direccion` char(50) DEFAULT NULL,
+  `Titulo_Arriendo` varchar(255) DEFAULT NULL,
+  `Direccion` varchar(50) DEFAULT NULL,
   `Num_Depto` int(4) DEFAULT NULL,
-  `Tipo_Arriendo` char(30) DEFAULT NULL,
+  `Tipo_Arriendo` enum('Departamento', 'Casa', 'Habitacion') NULL,
   `Cant_Habitaciones` int(5) DEFAULT NULL,
-  `Descripcion` char(255) DEFAULT NULL,
+  `Descripcion` varchar(255) DEFAULT NULL,
   `Valor` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -97,10 +91,10 @@ CREATE TABLE `publicacion` (
 
 CREATE TABLE `soporte` (
   `ID_Soporte` int(11) NOT NULL,
-  `Correo` char(45) DEFAULT NULL,
-  `Motivo` char(255) DEFAULT NULL,
-  `Asunto` char(255) DEFAULT NULL,
-  `Mensaje` char(255) DEFAULT NULL
+  `Correo` varchar(45) DEFAULT NULL,
+  `Motivo` varchar(255) DEFAULT NULL,
+  `Asunto` varchar(255) DEFAULT NULL,
+  `Mensaje` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -154,7 +148,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
-  MODIFY `ID_Cuenta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_Cuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `favoritos`

@@ -44,7 +44,6 @@ a:hover {
 
 /*main div*/
 
-
 .main-div {
     display: grid;
     grid-template-columns: 30% auto;
@@ -55,16 +54,28 @@ a:hover {
 .filtros {
     position: fixed;
     top: 60px; /*para que no choque con el menu*/
-    left: 5px;
+    left: 10px;
+}
+
+#form-filtro{
+    text-align: center;
+}
+
+.input_minimo{
+    margin-right: 20px;
 }
 
 .flex-filtros-boton, .flex-divrow-filtros {   /*aqui iran los filtros (izq) publicaci(der) (filtros en fila en general)*/
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     grid-column: 1/2;
+}
+.flex-divrow-filtros [type="radio"]{
+    margin-left: 20px;
+    margin-right: 7px;
 }
 
 .filtros, .flex-divcolumn-filtros { /* filtros en columnas flex*/
@@ -76,7 +87,7 @@ a:hover {
     grid-column: 1/2;
 }
 
-button,button div img {
+.flex-filtros-boton div img {
     width: 85px;
     height: 85px;
     cursor: pointer;
@@ -192,14 +203,13 @@ p {
 footer{
     background:#9f8ad0;
     padding-bottom: 0.1px;
-    margin-top: 500px;
 }
 .footer-content{
     display:flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding-top: 30px;
+    padding-top: 60px;
     padding-bottom: 40px;
 
 }
