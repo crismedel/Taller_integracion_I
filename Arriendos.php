@@ -2,6 +2,7 @@
 
 session_start();
 
+
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
 } else {
@@ -10,44 +11,55 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
 
 require_once "Conex.inc";
 
-$sql="SELECT * FROM publicacion";
-$show = mysqli_query($db, $sql);
+$arriendos = header("locate: Arriendos.php");
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+$boton = "";
 
-    
+$Lista="SELECT * FROM publicacion";
+$show = mysqli_query($db, $Lista);
 
-    $valor_min = trim($_POST["minimo"]);
-    $valor_max = trim($_POST["maximo"]);
-    $tipo_arriendo = trim($_POST["tipo_vivienda"]);
-    $cant_hab = trim($_POST["Cant_Hab"]);
+if(isset($_GET['filtrar'])){
 
-    $sql = "SELECT * FROM 'publicacion' WHERE Valor < ? AND Valor > ? and Tipo_Arriendo = ? Cant_Habitaciones = ?";
-
-    if($stmt = $db->prepare($sql)){
-        $stmt->bind_param("iisi", $param_valor_min, $param_valor_max, $param_tipo_arriendo, $param_cant_hab);
-
-        $param_valor_min = $valor_min;
-        $param_valor_max = $valor_max;
-        $param_tipo_arriendo = $tipo_arriendo;
-        $param_cant_hab = $cant_hab;
-
-        if($stmt->execute()){
-            header("location: Arriendos.php");
-        } else {
-            echo "Ocurrió un error. Inténtelo mmás tarde.";
-        }
-
-        $stmt->close();
+    if(empty($_GET["minimo"])){
+        $valor_min = "Valor > 0";
+    } else {
+        $valor_min = "Valor >= ".trim($_GET['minimo']);
     }
+
+    if(empty($_GET['maximo'])){
+        $valor_max = "Valor < 700000000";
+    } else {
+        $valor_max = "Valor <= ".trim($_GET['maximo']);
+    }
+
+    if(isset($_GET['tipo_vivienda'])){
+        $tipo_arriendo = "AND Tipo_Arriendo = '".trim($_GET['tipo_vivienda'])."'";
+    } else {
+        $tipo_arriendo = "";
+    }
+
+    if(isset($_GET['cant_hab'])){
+        $cant_hab = "AND Cant_Habitaciones ".trim($_GET['cant_hab']);
+    } else {
+        $cant_hab = "";
+    }
+
+    $lista_filtro = "SELECT * FROM publicacion WHERE $valor_min AND $valor_max $tipo_arriendo $cant_hab";
+    $show = mysqli_query($db, $lista_filtro);
+    
+    $boton = "<input id='boton_lista' onclick='$arriendos' type='submit' value='Quitar Filtro'>";
 }
 
 if(isset($_GET['buscar'])){
     $busqueda = $_GET['busqueda'];
 
-    $sql = "SELECT * FROM publicacion where Titulo_Arriendo LIKE '%$busqueda%' OR Direccion LIKE '%$busqueda%' OR Descripcion LIKE '%$busqueda%'";
-    $show = mysqli_query($db, $sql);
+    $lista_busqueda = "SELECT * FROM publicacion where Titulo_Arriendo LIKE '%$busqueda%' OR Direccion LIKE '%$busqueda%' OR Descripcion LIKE '%$busqueda%'";
+    $show = mysqli_query($db, $lista_busqueda);
+
+    $boton = "<input id='boton_lista' onclick='$arriendos' type='submit' value='Quitar buscador de: $busqueda'>";
 }
+
+$db->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +80,7 @@ if(isset($_GET['buscar'])){
             <?php echo $cuenta; ?>
             <form action="" method="get">
                 <input id="barra-buscador" name="busqueda" type="search" placeholder="Buscar Arriendos...">
-                <input id="boton-buscador" name="buscar" type="submit" src="img/lupa.png">
+                <input id="boton-buscador" name="buscar" type="submit">
             </form>
         </nav>
     </header>
@@ -76,9 +88,9 @@ if(isset($_GET['buscar'])){
     <main>
         <div class="main-div">
             <div class="filtros">
-                <form id="form-filtro" action="" method="POST">
+                <form id="form-filtro" action="" method="get">
                     <h2>Filtros</h2>
-
+                    <?php echo $boton; ?>
                     <div class="flex-divcolumn-filtros">
                         <span>Rango de precio</span>
                     </div>
@@ -104,18 +116,18 @@ if(isset($_GET['buscar'])){
                         <div class="flex-divcolumn-filtros">
                             <span>Cantidad Habitaciones</span>
                             <div class="flex-divrow-filtros">
-                                <input type="radio" name="Cant_Hab" id="1_Hab" value="1">
+                                <input type="radio" name="cant_hab" id="1_Hab" value="=1">
                                 <label for="valor-1">1</label>
-                                <input type="radio" name="Cant_Hab" id="2_Hab" value="2">
+                                <input type="radio" name="cant_hab" id="2_Hab" value="=2">
                                 <label for="valor-2">2</label>
-                                <input type="radio" name="Cant_Hab" id="3_Hab" value="3">
+                                <input type="radio" name="cant_hab" id="3_Hab" value="=3">
                                 <label for="valor-3">3</label>
-                                <input type="radio" name="Cant_Hab" id="mas_Hab" value=">4">
+                                <input type="radio" name="cant_hab" id="mas_Hab" value=">3">
                                 <label for="valor-mas">Más</label>
                             </div>
                         </div>
                         <div class="flex-divcolumn-filtros">
-                            <input type="submit" id="cargar-resultados" value="Filtrar"><br>
+                            <input type="submit" id="cargar-resultados" name="filtrar" value="Filtrar"><br>
                             <input type="reset" id="reiniciar_filtro" value="Restablecer">
                         </div>
                     </div>
@@ -125,19 +137,25 @@ if(isset($_GET['buscar'])){
             <div class="main-div-publicaciones">
                 <div class="grid-div-publicaciones">
                     <?php
-                    
-                    while($row = mysqli_fetch_array($show)){
-                        echo '<div class="imagen-publicacion">
-                                <img src="img/inicio.svg" alt="">
-                              </div>';
-                        echo '<div class="info-publicacion">
-                                <p>'.$row['Titulo_Arriendo'].'</p>
-                                <p>'.$row['Tipo_Arriendo'].'</p>
-                                <p>$'.$row['Valor'].'</p>
-                                <p>'.$row['Cant_Habitaciones'].' Habitación(es)</p>
-                              </div>';
+                    $numeros = mysqli_num_rows($show);
+
+                    if($numeros == 0){
+                        echo "<h1>No se han encontrado resultados</h1>";
+                    } else {
+                        while($row = mysqli_fetch_array($show)){
+                            echo '<div class="imagen-publicacion">
+                                    <img src="img/inicio.svg" alt="">
+                                    </div>';
+                            echo '<div class="info-publicacion">
+                                    <p>'.$row['Titulo_Arriendo'].'</p>
+                                    <p>'.$row['Tipo_Arriendo'].'</p>
+                                    <p>$'.$row['Valor'].'</p>
+                                    <p>'.$row['Cant_Habitaciones'].' Habitación(es)</p>
+                                    </div>';
+                        }
                     }
 
+                    
                     ?>
                 </div>
             </div>
