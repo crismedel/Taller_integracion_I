@@ -1,5 +1,10 @@
 <?php
 
+if(isset($_SESSION["inicio"]) && $_SESSION["inicio"] === true){
+    header("location: ../index.php");
+    exit;
+}
+
 require_once "../Conex.inc";
 
 $nombre = $apellido = $correo = $cel = $genero = $fecha_nacimiento = $tipo_usuario = $contraseña = $confirmar_contraseña = "";
@@ -121,7 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/estilo_login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Regístrate</title>
@@ -142,7 +147,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	}
     </script>
 
-    <input type="button" onclick="document.location='../index.php'" value="Volver">
+    <input type="button" onclick="history.back()" value="Volver">
     <h2>Regístrate</h2>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">

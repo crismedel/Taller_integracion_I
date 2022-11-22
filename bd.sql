@@ -62,13 +62,7 @@ CREATE TABLE `cuenta` (
 CREATE TABLE `favoritos` (
   `ID_Cuenta` int(11) DEFAULT NULL,
   `ID_Favorito` int(11) NOT NULL,
-  `ID_Publicacion` int(11) DEFAULT NULL,
-  `Direccion` varchar(50) DEFAULT NULL,
-  `Num_Depto` int(4) DEFAULT NULL,
-  `Tipo_Arriendo` varchar(30) DEFAULT NULL,
-  `Cant_Habitaciones` int(5) DEFAULT NULL,
-  `Descripcion` varchar(255) DEFAULT NULL,
-  `Valor` int(6) DEFAULT NULL
+  `ID_Publicacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -83,7 +77,7 @@ CREATE TABLE `publicacion` (
   `Titulo_Arriendo` varchar(255) DEFAULT NULL,
   `Direccion` varchar(50) DEFAULT NULL,
   `Num_Depto` int(4) DEFAULT NULL,
-  `Tipo_Arriendo` varchar(30) DEFAULT NULL,
+  `Tipo_Arriendo` enum('Departamento', 'Casa', 'Habitacion') NULL,
   `Cant_Habitaciones` int(5) DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL,
   `Valor` int(6) DEFAULT NULL

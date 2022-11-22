@@ -2,12 +2,64 @@
 
 session_start();
 
+
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
 } else {
-    $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>";
+    $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a><br><a href='./publicacion.php' class='boton-sesion'>Crear Publicación</a>";
 }
 
+require_once "Conex.inc";
+
+$arriendos = header("locate: Arriendos.php");
+
+$boton = "";
+
+$Lista="SELECT * FROM publicacion";
+$show = mysqli_query($db, $Lista);
+
+if(isset($_GET['filtrar'])){
+
+    if(empty($_GET["minimo"])){
+        $valor_min = "Valor > 0";
+    } else {
+        $valor_min = "Valor >= ".trim($_GET['minimo']);
+    }
+
+    if(empty($_GET['maximo'])){
+        $valor_max = "Valor < 700000000";
+    } else {
+        $valor_max = "Valor <= ".trim($_GET['maximo']);
+    }
+
+    if(isset($_GET['tipo_vivienda'])){
+        $tipo_arriendo = "AND Tipo_Arriendo = '".trim($_GET['tipo_vivienda'])."'";
+    } else {
+        $tipo_arriendo = "";
+    }
+
+    if(isset($_GET['cant_hab'])){
+        $cant_hab = "AND Cant_Habitaciones ".trim($_GET['cant_hab']);
+    } else {
+        $cant_hab = "";
+    }
+
+    $lista_filtro = "SELECT * FROM publicacion WHERE $valor_min AND $valor_max $tipo_arriendo $cant_hab";
+    $show = mysqli_query($db, $lista_filtro);
+    
+    $boton = "<input id='boton_lista' onclick='$arriendos' type='submit' value='Quitar Filtro'>";
+}
+
+if(isset($_GET['buscar'])){
+    $busqueda = $_GET['busqueda'];
+
+    $lista_busqueda = "SELECT * FROM publicacion where Titulo_Arriendo LIKE '%$busqueda%' OR Direccion LIKE '%$busqueda%' OR Descripcion LIKE '%$busqueda%'";
+    $show = mysqli_query($db, $lista_busqueda);
+
+    $boton = "<input id='boton_lista' onclick='$arriendos' type='submit' value='Quitar buscador de: $busqueda'>";
+}
+
+$db->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,129 +78,88 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
             <a href="Arriendos.php">Arriendos</a> 
             <a href="Soporte.php">Soporte</a>
             <?php echo $cuenta; ?>
-            <input id="barra-buscador" type="search" placeholder="Buscar Arriendos..">
-            <input id="boton-buscador" type="image" src="img/lupa.png">
+            <form action="" method="get">
+                <input id="barra-buscador" name="busqueda" type="search" placeholder="Buscar Arriendos...">
+                <input id="boton-buscador" name="buscar" type="submit">
+            </form>
         </nav>
     </header>
 
     <main>
         <div class="main-div">
             <div class="filtros">
-                <h2>Filtros</h2>
-
-                <div class="flex-divcolumn-filtros">
-                    <span>Rango de precio</span>
-                </div>
-
-                <div class="flex-divrow-filtros">
-                    <input type="text" placeholder="Min">
-                    <span>-</span>
-                    <input type="text" placeholder="Max">
-                </div>
-
-                <div class="flex-divrow-filtros">
-                    <span>Tipo de vivienda</span>
-                </div>
-
-                <div class="flex-filtros-boton">
-                    <button>
-                        <div>
-                            <img src="img/inicio.svg" alt="">
-                        </div>
-                        <span>Departamento</span>
-                    </button>
-                    <button>
-                        <div>
-                            <img src="img/inicio.svg" alt="">
-                        </div>
-                        <span>Casa</span>
-                    </button>
-                    <button>
-                        <div>
-                            <img src="img/inicio.svg" alt="">
-                        </div>
-                        <span>Pieza</span>
-                    </button>
-                    
-                </div>
-                <div class=".flex-divcolumn-filtros">
+                <form id="form-filtro" action="" method="get">
+                    <h2>Filtros</h2>
+                    <?php echo $boton; ?>
                     <div class="flex-divcolumn-filtros">
-                        <span>Cantidad Habitaciones</span>
-                        <div class="flex-divrow-filtros">
-                            <span>1</span>
-                            <input type="radio" name="" id="">
-                            <span>2</span>
-                            <input type="radio" name="" id="">
-                            <span>3</span>
-                            <input type="radio" name="" id="">
-                            <span>otro</span>
-                            <input type="radio" name="" id="">
-                        </div>
+                        <span>Rango de precio</span>
+                    </div>
+
+                    <div class="flex-divrow-filtros">
+                        <input type="number" name="minimo" class="input_minimo" min="0"  placeholder="Minimo">
+                        <input type="number" name="maximo" class="input_maximo" min="150000" placeholder="Máximo">
+                    </div>
+
+                    <div class="flex-divrow-filtros">
+                        <span>Tipo de vivienda</span>
+                    </div>
+
+                    <div class="flex-filtros-boton">
+                        <input type="radio" id="Departamento" name="tipo_vivienda" value="Departamento">
+                        <label for="Departamento"><img src="img/inicio.svg" alt=""><br><span>Departamento</span></label>
+                        <input type="radio" id="Casa" name="tipo_vivienda" value="Casa">
+                        <label for="casa"><img src="img/inicio.svg" alt=""><br><span>Casa</span></label>
+                        <input type="radio" id="Habitacion" name="tipo_vivienda" value="Habitacion">
+                        <label for="habitacion"><img src="img/inicio.svg" alt=""><br><span>Habitacion</span></label>
                     </div>
                     <div class="flex-divcolumn-filtros">
-                        <button id="cargar-resultados">
-                            <span>Cargar Resultados</span>
-                        </button>
+                        <div class="flex-divcolumn-filtros">
+                            <span>Cantidad Habitaciones</span>
+                            <div class="flex-divrow-filtros">
+                                <input type="radio" name="cant_hab" id="1_Hab" value="=1">
+                                <label for="valor-1">1</label>
+                                <input type="radio" name="cant_hab" id="2_Hab" value="=2">
+                                <label for="valor-2">2</label>
+                                <input type="radio" name="cant_hab" id="3_Hab" value="=3">
+                                <label for="valor-3">3</label>
+                                <input type="radio" name="cant_hab" id="mas_Hab" value=">3">
+                                <label for="valor-mas">Más</label>
+                            </div>
+                        </div>
+                        <div class="flex-divcolumn-filtros">
+                            <input type="submit" id="cargar-resultados" name="filtrar" value="Filtrar"><br>
+                            <input type="reset" id="reiniciar_filtro" value="Restablecer">
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
 
             <div class="main-div-publicaciones">
                 <div class="grid-div-publicaciones">
-                    <div class="imagen-publicacion"> <!--aqui se iran añadiendo las publicaciones esto es temporal-->
-                        <img src="img/inicio.svg" alt="">
-                    </div>
-                    <div class="info-publicacion">
-                        <p>Se arrienda departamento en fundo el carmen</p>
-                        <p>Departamento</p>
-                        <p>300000</p>
-                        <p>1 habitacion</p>
-                    </div>
-                    <div class="imagen-publicacion">
-                        <img src="img/inicio.svg" alt="">
-                    </div>
-                    <div class="info-publicacion">
-                        <p>Se arrienda departamento en fundo el carmen</p>
-                        <p>Departamento</p>
-                        <p>300000</p>
-                        <p>1 habitacion</p>
-                    </div>
-                    <div class="imagen-publicacion">
-                        <img src="img/inicio.svg" alt="">
-                    </div>
-                    <div class="info-publicacion">
-                        <p>Se arrienda departamento en fundo el carmen</p>
-                        <p>Departamento</p>
-                        <p>300000</p>
-                        <p>1 habitacion</p>
-                    </div>
+                    <?php
+                    $numeros = mysqli_num_rows($show);
+
+                    if($numeros == 0){
+                        echo "<h1>No se han encontrado resultados</h1>";
+                    } else {
+                        while($row = mysqli_fetch_array($show)){
+                            echo '<div class="imagen-publicacion">
+                                    <img src="img/inicio.svg" alt="">
+                                    </div>';
+                            echo '<div class="info-publicacion">
+                                    <p>'.$row['Titulo_Arriendo'].'</p>
+                                    <p>'.$row['Tipo_Arriendo'].'</p>
+                                    <p>$'.$row['Valor'].'</p>
+                                    <p>'.$row['Cant_Habitaciones'].' Habitación(es)</p>
+                                    </div>';
+                        }
+                    }
+
+                    
+                    ?>
                 </div>
             </div>
         </div>
-
-
-
-
-        <div class="contenedor-popup">
-            <div class="ventana-emergente-login">
-                <div class="flex-divrow-popup">
-                    <p>Iniciar Sesion</p>
-                    <button class="cerrar-login">
-                        <img src="img/x.png" alt="">
-                    </button>
-                </div>
-                <form action="">
-                    <input type="text" placeholder="Correo Electronico" required>
-                    <input type="password" placeholder="Contraseña" required>
-                </form>
-                <div class="flex-divrow-popup">
-                    <a href="">Crear Cuenta</a>
-                </div>
-            </div>
-        </div>
-
-
-
 
     </main>
         <!--Solucionar el footer-->
@@ -178,6 +189,5 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
         </div>
         <div id="line"></div>
     </footer>
-    <script src="js/popup.js"></script>
 </body>
 </html>
