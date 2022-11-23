@@ -1,0 +1,191 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Elementos del header (menu de navegacion)*/
+header {
+    background-color: gray;
+    position: relative;
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgoldenrodyellow;
+    width: 100%;
+    padding-right: 30px ;
+}
+.menu a {
+    padding: 30px;
+    text-decoration: none;
+    color: black;
+    transition: .5s;
+}
+
+a:hover {
+    background-color: aquamarine;
+}
+
+#barra-buscador {
+    margin-left: 100px;
+    height: 30px;
+    width: 300px;
+    border-radius: 4px;
+}
+
+#boton-buscador {
+    width: 25px;
+    height: 25px;
+    margin-right: 50px;
+}
+
+/*main div*/
+
+.main-div {
+    display: grid;
+    grid-template-columns: 30% auto;
+}
+
+
+/* Elementos del filtro*/
+.filtros {
+    position: fixed;
+    top: 60px; /*para que no choque con el menu*/
+    left: 10px;
+}
+
+#form-filtro{
+    text-align: center;
+}
+
+.input_minimo{
+    margin-right: 20px;
+}
+
+.flex-filtros-boton, .flex-divrow-filtros {   /*aqui iran los filtros (izq) publicaci(der) (filtros en fila en general)*/
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    grid-column: 1/2;
+}
+.flex-divrow-filtros [type="radio"]{
+    margin-left: 20px;
+    margin-right: 7px;
+}
+
+.filtros, .flex-divcolumn-filtros { /* filtros en columnas flex*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;  /*Separar los titulos*/
+    grid-column: 1/2;
+}
+
+.flex-filtros-boton div img {
+    width: 85px;
+    height: 85px;
+    cursor: pointer;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+}
+
+#cargar-resultados{
+    height: 32px; /*para que no choque con el footer*/
+}
+
+div span {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*Elementos publicaciones*/
+.main-div-publicaciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    grid-column: 2/3;
+}
+.grid-div-publicaciones { 
+    display: grid;
+    grid-template-columns: 350px 400px; /* imagen / info*/
+    width: 800px; /*tamaños maximos por publicacion*/
+}
+
+.imagen-publicacion { /*globales para img publicaciones*/
+    width: 300px;
+    height: 300px;
+
+}
+
+p {
+    padding-top:25px ; /* separado al ojo*/
+    max-width: 400px; /*limites del texto*/
+}
+
+
+
+/* estilos de footer solucionarlo*/
+footer{
+    background:#9f8ad0;
+    padding-bottom: 0.1px;
+}
+.footer-content{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 60px;
+    padding-bottom: 40px;
+
+}
+.contact-us{
+    width: 40%;
+    color:white;
+}
+.marca{
+    font-weight: 500;
+    font-size: 40px ;
+}
+.marca+p{
+   font-weight: 500;
+}
+.social-media{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}  
+.social-media-icon{
+    display: inline-block;
+    margin-left: 20px;
+    width: 60px;
+    height:60px;
+    border: 1px solid white;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+}
+.social-media-icon:hover{
+    background: white;
+    color:#7649a2;
+}
+.social-media-icon i{
+    font-size: 30px;
+    line-height:60px;    
+}
+#line{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 2px;
+    background: white;
+    margin-bottom: 60px;
+    
+}
