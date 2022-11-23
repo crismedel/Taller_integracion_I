@@ -85,7 +85,5 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
         <div id="line"></div>
     </footer>
 
-
-    <script src="js/popup.js"></script>
 </body>
 </html>
