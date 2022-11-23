@@ -1,0 +1,38 @@
+#miperfil-div-principal {
+    display: grid;
+    grid-template-columns: 30% auto;
+    grid-template-rows: 30% 50% 20%;
+    background-color: gainsboro;
+    position: relative;
+    width: 800px;
+    height: 600px;
+    top: 50px;
+    left: 350px;
+    text-align: center;
+}
+
+img {
+    position: relative;
+    max-width: 100px;
+    max-height: 100px;
+    top: 30px;
+}
+
+#contenedor-datos-usuario{
+    background-color: green;
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+#contenedor-link-favoritos{
+    background-color: red;
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
+#contenedor-link-favoritos > a {
+    position: relative;
+    top: 50px;
+}
+
+

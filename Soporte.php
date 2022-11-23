@@ -56,26 +56,6 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
             </div>
         </div>
 
-
-
-        <div class="contenedor-popup">
-            <div class="ventana-emergente-login">
-                <div class="flex-divrow-popup">
-                    <p>Iniciar Sesion</p>
-                    <button class="cerrar-login">
-                        <img src="img/x.png" alt="">
-                    </button>
-                </div>
-                <form action="">
-                    <input type="text" placeholder="Correo Electronico" required>
-                    <input type="password" placeholder="Contraseña" required>
-                </form>
-                <div class="flex-divrow-popup">
-                    <a href="">Crear Cuenta</a>
-                </div>
-            </div>
-        </div>
-
     </main>
     <!--Solucionar el footer-->
     <footer id="contacto">
