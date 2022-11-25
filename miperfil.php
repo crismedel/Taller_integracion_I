@@ -3,9 +3,9 @@
 session_start();
 
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
-    $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
+    header("locate: Index.php");
 } else {
-    $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a><br><a href='./publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='./miperfil.php' class='boton-sesion'>Mi Perfil</a>";
+    $cuenta = "<a href='./publicacion.php' class='boton-sesion'>Crear Publicación</a>";
 }
 
 ?>
@@ -45,6 +45,8 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
                 <p><?php	echo "Fecha De Nacimiento: " . $_SESSION["Fecha_Nacimiento"]?></p>
                 <p><?php	echo "Correo Electronico: " . $_SESSION["Correo"]?></p>
                 <p><?php	echo "Numero: " . $_SESSION["Num_Contacto"]?></p>
+                <a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>
+
 
             </div>
             <div id="contenedor-link-favoritos">
@@ -62,8 +64,12 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
                     <input type="text" name="fechadenacimiento-nuevo">
                     <label for="nombre-nuevo">Cambiar Número</label>
                     <input type="text" name="numero-nuevo">
-                    <label for="nombre-nuevo">Cambiar Contraseña</label>
-                    <input type="text" name="contrasena-nuevo">
+                    <label for="vieja-contraseña">Contraseña Antigua</label>
+                    <input type="password" name="vieja-contraseña">
+                    <label for="contraseña-nuevo">Contraseña Nueva</label>
+                    <input type="password" name="contrasena-nuevo">
+                    <label for="confirmar-contraseña">Confirmar Contraseña</label>
+                    <input type="password" name="confirmar-contraseña">
                     <div>___________________________________</div>
                     <input type="submit" name="enviar" value="Aplicar Cambios" id="submit-nuevosdatos-usuario">
                 </form>
