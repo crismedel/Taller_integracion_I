@@ -3,7 +3,7 @@
 session_start();
 
 if(!isset($_SESSION["ID_Cuenta"]) || $_SESSION["ID_Cuenta"] !== true){
-    header("locate: Index.php");
+    $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
 } else {
     $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>";
 }
@@ -58,11 +58,11 @@ $error_Titulo_Arriendo = $error_Tipo_Arriendo = $error_Valor = $error_Cant_Habit
     }
 
     if(empty($error_Titulo_Arriendo) && empty($error_Tipo_Arriendo) && empty($error_Valor) && empty($error_Cant_Habitaciones)  && empty($error_Direccion) && empty($error_Num_Depto) && empty($error_Descripcion)){
-        $sql = "INSERT INTO publicacion (Titulo_Arriendo, Tipo_Arriendo, Valor, Cant_Habitaciones, Direccion, Num_Depto, Descripcion) VALUES (?, ?, ?, ?, ? ,? ,?)";
+        $sql = "INSERT INTO publicacion (ID_Cuenta, Titulo_Arriendo, Direccion, Num_Depto, Tipo_Arriendo, Cant_Habitaciones, Descripcion, Valor) VALUES (?, ?, ?, ?, ? ,? ,?, ?)";
 
         if($stmt = $db->prepare($sql)){
-            $stmt->bind_param("ssssssss", $param_Titulo_Arriendo, $param_Tipo_Arriendo, $param_Valor, $param_Cant_Habitaciones, $param_Direccion, $param_Num_Depto, $param_Descripcion);
-            
+            $stmt->bind_param("issssisi", $param_id_cuenta, $param_Titulo_Arriendo, $param_Direccion, $param_Num_Depto, $param_Tipo_Arriendo, $param_Cant_Habitaciones, $param_Descripcion, $param_Valor);
+
             $param_id_cuenta = $id_cuenta;
             $param_Titulo_Arriendo = $Titulo_Arriendo;
             $param_Tipo_Arriendo = $Tipo_Arriendo;
