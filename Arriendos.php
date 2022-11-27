@@ -44,10 +44,16 @@ if(isset($_GET['filtrar'])){
         $cant_hab = "";
     }
 
-    $lista_filtro = "SELECT * FROM publicacion WHERE $valor_min AND $valor_max $tipo_arriendo $cant_hab";
-    $show = mysqli_query($db, $lista_filtro);
+    if(empty($_GET["minimo"]) && empty($_GET["maximo"]) && empty($_GET["tipo_vivienda"]) && empty($_GET["cant_hab"])){
+        $boton = "";
+    } else {
+        $lista_filtro = "SELECT * FROM publicacion WHERE $valor_min AND $valor_max $tipo_arriendo $cant_hab";
+        $show = mysqli_query($db, $lista_filtro);
     
-    $boton = "<input id='boton_lista' onclick='$arriendos' type='submit' value='Quitar Filtro'>";
+        $boton = "<input id='boton_lista' onclick='$arriendos' type='submit' value='Quitar Filtro'>";
+    }
+
+    
 }
 
 if(isset($_GET['buscar'])){
