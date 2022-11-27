@@ -3,9 +3,9 @@
 session_start();
 
 if(!isset($_SESSION["ID_Cuenta"]) || $_SESSION["ID_Cuenta"] !== true){
-    $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
-} else {
     $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>";
+} else {
+    $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
 }
 
 require_once "Conex.inc";
@@ -139,7 +139,7 @@ $error_Titulo_Arriendo = $error_Tipo_Arriendo = $error_Valor = $error_Cant_Habit
                     <input type="text" name="Direccion"><br>
                 </div><br>
                 <div class="input-box">
-                    <span class="details">Num Depto</span>
+                    <span class="details">Num Depto(opcional)</span>
                     <input type="text" name="Num_Depto"><br>
                 </div><br>
                 <div class="input-box">
