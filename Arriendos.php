@@ -6,7 +6,7 @@ session_start();
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
 } else {
-    $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a><br><a href='./publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='./miperfil.php' class='boton-sesion'>Mi Perfil</a>";
+    $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a><br><a href='./subir_publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='./miperfil.php' class='boton-sesion'>Mi Perfil</a>";
 }
 
 require_once "Conex.inc";
@@ -143,19 +143,17 @@ $db->close();
                         echo "<h1>No se han encontrado resultados</h1>";
                     } else {
                         while($row = mysqli_fetch_array($show)){
-                            echo '<div class="imagen-publicacion">
+                            echo '<button onclick='.header("locate: publicacion.php").'><div class="imagen-publicacion">
                                     <img src="img/inicio.svg" alt="">
-                                    </div>';
-                            echo '<div class="info-publicacion">
+                                </div>';
+                            echo '<div id='.$row['ID_Publicacion'].' class="info-publicacion">
                                     <p>'.$row['Titulo_Arriendo'].'</p>
                                     <p>'.$row['Tipo_Arriendo'].'</p>
                                     <p>$'.$row['Valor'].'</p>
                                     <p>'.$row['Cant_Habitaciones'].' Habitación(es)</p>
-                                    </div>';
+                                </div></button>';
                         }
                     }
-
-                    
                     ?>
                 </div>
             </div>

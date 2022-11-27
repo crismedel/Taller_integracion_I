@@ -5,7 +5,7 @@ session_start();
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     header("locate: Index.php");
 } else {
-    $cuenta = "<a href='./publicacion.php' class='boton-sesion'>Crear Publicación</a>";
+    $cuenta = "<a href='./subir_publicacion.php' class='boton-sesion'>Crear Publicación</a>";
 }
 
 ?>
