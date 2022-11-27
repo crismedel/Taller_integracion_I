@@ -143,7 +143,8 @@ $db->close();
                         echo "<h1>No se han encontrado resultados</h1>";
                     } else {
                         while($row = mysqli_fetch_array($show)){
-                            echo '<button onclick='.header("locate: publicacion.php").'><div class="imagen-publicacion">
+                            $publicacion = 'location.href="publicacion.php?id='.$row['ID_Publicacion'].'"';
+                            echo '<button onclick='.$publicacion.'><div class="imagen-publicacion">
                                     <img src="img/inicio.svg" alt="">
                                 </div>';
                             echo '<div id='.$row['ID_Publicacion'].' class="info-publicacion">
