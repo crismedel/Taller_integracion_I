@@ -57,11 +57,11 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
             <div id="contenedor-editar-informacion">
                 <form action="" id="editar-informacion-formulario" method="post">
                     <label for="nombre-nuevo">Cambiar Nombre</label>
-                    <input type="text" name="nombre-nuevo">
+                    <input type="text" name="nombrenuevo" required>
                     <label for="apellido-nuevo">Cambiar Apellido</label>
-                    <input type="text" name="apellido-nuevo">
+                    <input type="text" name="apellidonuevo" required>
                     <label for="numero-nuevo">Cambiar Número</label>
-                    <input type="text" name="numero-nuevo">
+                    <input type="text" name="numeronuevo" required>
                     <BR></BR>
                     <input type="submit" name="enviar" value="Aplicar Cambios" id="submit-nuevosdatos-usuario">
                     <BR></BR>

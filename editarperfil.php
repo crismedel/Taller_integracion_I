@@ -12,34 +12,21 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);          
 }
 
-$nombre_nuevo = $_POST["nombre-nuevo"];
-$apellido_nuevo = $_POST["apellido-nuevo"];
-$nombre_nuevo = $_POST["nombre-nuevo"];
-$nombre_nuevo = $_POST["nombre-nuevo"];
+$nombre_nuevo = $_POST["nombrenuevo"];
+$apellido_nuevo = $_POST["apellidonuevo"];
+$numero_nuevo = $_POST["numeronuevo"];
 
-
-
-//insert form data into database
 if(isset($_SESSION["inicio"])){
-    $sql = "SELECT * FROM rutina WHERE Idusuario='$Idusuario'";
+    $idusuario = $_SESSION["ID"];
+    $sql = "UPDATE cuenta SET Nombre='$nombre_nuevo',Apellido='$apellido_nuevo',Num_Contacto='$numero_nuevo' WHERE ID_Cuenta='$idusuario'";
     $result = $conn->query($sql);
 }
 
-
-$arr = array();
-$contador = 0;
-
-while($row = mysqli_fetch_assoc($result)){
-    $arr[$contador] = $row;
-    $contador += 1;
- }
-    
-
-
 $response = array();
 if ($result) {
-    $response['success'] = $arr;
-    $response['contador'] = $contador;
+    $response['success'] = HTTP_response_code();
+    echo'<p> Se realizó el cambio exitosamente</p>
+    '
     exit(json_encode($response));
 } else {
     $response['success'] = HTTP_response_code() . $conn->error;
