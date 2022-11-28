@@ -69,3 +69,10 @@ img {
     height: 30px;
 }
 
+#editar-informacion-formulario > a {
+    position: relative;
+    color: black;
+    top: 15px;
+    width: 400px;
+    height: 30px;
+}

@@ -58,20 +58,15 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
                 <form action="" id="editar-informacion-formulario" method="post">
                     <label for="nombre-nuevo">Cambiar Nombre</label>
                     <input type="text" name="nombre-nuevo">
-                    <label for="nombre-nuevo">Cambiar Apellido</label>
+                    <label for="apellido-nuevo">Cambiar Apellido</label>
                     <input type="text" name="apellido-nuevo">
-                    <label for="nombre-nuevo">Cambiar Fecha De Nacimiento</label>
-                    <input type="text" name="fechadenacimiento-nuevo">
-                    <label for="nombre-nuevo">Cambiar Número</label>
+                    <label for="numero-nuevo">Cambiar Número</label>
                     <input type="text" name="numero-nuevo">
-                    <label for="vieja-contraseña">Contraseña Antigua</label>
-                    <input type="password" name="vieja-contraseña">
-                    <label for="contraseña-nuevo">Contraseña Nueva</label>
-                    <input type="password" name="contrasena-nuevo">
-                    <label for="confirmar-contraseña">Confirmar Contraseña</label>
-                    <input type="password" name="confirmar-contraseña">
-                    <div>___________________________________</div>
+                    <BR></BR>
                     <input type="submit" name="enviar" value="Aplicar Cambios" id="submit-nuevosdatos-usuario">
+                    <BR></BR>
+                    <BR></BR>
+                    <a href="./registro/reset_contraseña.php">Cambiar contraseña</a>
                 </form>
             </div>
 
@@ -81,6 +76,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
 
         </div>
     </main>
+    <script src="js/miperfil.js"></script>  
         
 </body>
 </html>
