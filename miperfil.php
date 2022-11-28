@@ -37,7 +37,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
 
             <!--Apartado izquierdo de la pagina (informacion actual del usuario)-->
             <div id="contenedor-foto-perfil">
-                <img src="./img/lupa.png" alt="">
+                <img src="./img/perfil.png" alt="">
             </div>
             <div id="contenedor-datos-usuario">
                 <p>  <?php	echo "Nombre: " . $_SESSION["Nombre"]?>  </p>
@@ -45,6 +45,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
                 <p><?php	echo "Fecha De Nacimiento: " . $_SESSION["Fecha_Nacimiento"]?></p>
                 <p><?php	echo "Correo Electronico: " . $_SESSION["Correo"]?></p>
                 <p><?php	echo "Numero: " . $_SESSION["Num_Contacto"]?></p>
+                <BR></BR>
                 <a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>
 
 
