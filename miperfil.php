@@ -37,7 +37,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
 
             <!--Apartado izquierdo de la pagina (informacion actual del usuario)-->
             <div id="contenedor-foto-perfil">
-                <img src="./img/lupa.png" alt="">
+                <img src="./img/perfil.png" alt="">
             </div>
             <div id="contenedor-datos-usuario">
                 <p>  <?php	echo "Nombre: " . $_SESSION["Nombre"]?>  </p>
@@ -45,6 +45,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
                 <p><?php	echo "Fecha De Nacimiento: " . $_SESSION["Fecha_Nacimiento"]?></p>
                 <p><?php	echo "Correo Electronico: " . $_SESSION["Correo"]?></p>
                 <p><?php	echo "Numero: " . $_SESSION["Num_Contacto"]?></p>
+                <BR></BR>
                 <a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>
 
 
@@ -57,21 +58,16 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
             <div id="contenedor-editar-informacion">
                 <form action="" id="editar-informacion-formulario" method="post">
                     <label for="nombre-nuevo">Cambiar Nombre</label>
-                    <input type="text" name="nombre-nuevo">
-                    <label for="nombre-nuevo">Cambiar Apellido</label>
-                    <input type="text" name="apellido-nuevo">
-                    <label for="nombre-nuevo">Cambiar Fecha De Nacimiento</label>
-                    <input type="text" name="fechadenacimiento-nuevo">
-                    <label for="nombre-nuevo">Cambiar Número</label>
-                    <input type="text" name="numero-nuevo">
-                    <label for="vieja-contraseña">Contraseña Antigua</label>
-                    <input type="password" name="vieja-contraseña">
-                    <label for="contraseña-nuevo">Contraseña Nueva</label>
-                    <input type="password" name="contrasena-nuevo">
-                    <label for="confirmar-contraseña">Confirmar Contraseña</label>
-                    <input type="password" name="confirmar-contraseña">
-                    <div>___________________________________</div>
+                    <input type="text" name="nombrenuevo" required>
+                    <label for="apellido-nuevo">Cambiar Apellido</label>
+                    <input type="text" name="apellidonuevo" required>
+                    <label for="numero-nuevo">Cambiar Número</label>
+                    <input type="text" name="numeronuevo" required>
+                    <BR></BR>
                     <input type="submit" name="enviar" value="Aplicar Cambios" id="submit-nuevosdatos-usuario">
+                    <BR></BR>
+                    <BR></BR>
+                    <a href="./registro/reset_contraseña.php">Cambiar contraseña</a>
                 </form>
             </div>
 
@@ -81,6 +77,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
 
         </div>
     </main>
+    <script src="js/miperfil.js"></script>  
         
 </body>
 </html>
