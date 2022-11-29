@@ -34,7 +34,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
         <img src="img/home.svg" alt="" class="house" ><!--icono del menu -->
         <nav class="menu-navegacion">
             <a href="index.php"><lord-icon src="https://cdn.lordicon.com/kxoxiwrf.json" trigger="loop" style="width:30px;height:30px"></lord-icon>Inicio</a>
-            <a href="Arriendos.php">Arriendos<lord-icon src="https://cdn.lordicon.com/alnsmmtf.json"trigger="loop" colors="primary:#4be1ec,secondary:#a866ee" style="width:32px;height:32px"></lord-icon></a>
+            <a href="./Arriendos/Arriendos.php">Arriendos<lord-icon src="https://cdn.lordicon.com/alnsmmtf.json"trigger="loop" colors="primary:#4be1ec,secondary:#a866ee" style="width:32px;height:32px"></lord-icon></a>
             <a href="Soporte.php"><lord-icon src="https://cdn.lordicon.com/hursldrn.json" trigger="loop" delay="500" colors="primary:#5fffff,secondary:#FF00FF" stroke="30"style="width:32px;height:32px"></lord-icon>Soporte</a> 
             <a href="#equipo">Equipo<lord-icon src="https://cdn.lordicon.com/dqxvvqzi.json" trigger="loop" colors="outline:#FF00FF,primary:#d1e3fa,secondary:#5fffff" state="morph-group" style="width:32px;height:32px"></lord-icon></a>
             <a href="#contacto"><lord-icon src="https://cdn.lordicon.com/sdhhsgeg.json" trigger="loop" colors="primary:#4be1ec,secondary:#a866ee" stroke="70" style="width:40px;height:40px"></lord-icon>Contacto</a>

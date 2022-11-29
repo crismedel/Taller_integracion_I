@@ -2,7 +2,7 @@
 
 //get form data and send to mysql database
 //import connection variables
-include_once 'Conex.inc';
+include_once '../Conex.inc';
 session_start();
 // Create connection - OOP
 $conn = new mysqli($servidor, $user, $password, $basedato);
@@ -25,8 +25,7 @@ if(isset($_SESSION["inicio"])){
 $response = array();
 if ($result) {
     $response['success'] = HTTP_response_code();
-    echo'<p> Se realizó el cambio exitosamente</p>
-    '
+    echo'<p> Se realizó el cambio exitosamente</p>';
     exit(json_encode($response));
 } else {
     $response['success'] = HTTP_response_code() . $conn->error;

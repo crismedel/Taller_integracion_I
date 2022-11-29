@@ -4,12 +4,12 @@ session_start();
 
 
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
-    $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
+    $cuenta = "<a href='../registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
 } else {
-    $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a><br><a href='./subir_publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='./miperfil.php' class='boton-sesion'>Mi Perfil</a>";
+    $cuenta = "<a href='../Arriendos/subir_publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='../Perfil/miperfil.php' class='boton-sesion'>Mi Perfil</a>";
 }
 
-require_once "Conex.inc";
+require_once "../Conex.inc";
 
 $arriendos = header("locate: Arriendos.php");
 
@@ -73,16 +73,16 @@ $db->close();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/Arriendos-estilos.css">
+    <link rel="stylesheet" href="../css/Arriendos-estilos.css">
     <title>Arriendos</title>
 </head>
 
 <body>   
     <header>
         <nav class="menu">
-            <a href="Index.php">Inicio</a>
-            <a href="Arriendos.php">Arriendos</a> 
-            <a href="Soporte.php">Soporte</a>
+            <a href="../Index.php">Inicio</a>
+            <a href="../Arriendos/Arriendos.php">Arriendos</a> 
+            <a href="../Soporte.php">Soporte</a>
             <?php echo $cuenta; ?>
             <form action="" method="get">
                 <input id="barra-buscador" name="busqueda" type="search" placeholder="Buscar Arriendos...">
@@ -112,11 +112,11 @@ $db->close();
 
                     <div class="flex-filtros-boton">
                         <input type="radio" id="Departamento" name="tipo_vivienda" value="Departamento">
-                        <label for="Departamento"><img src="img/inicio.svg" alt=""><br><span>Departamento</span></label>
+                        <label for="Departamento"><img src="../img/inicio.svg" alt=""><br><span>Departamento</span></label>
                         <input type="radio" id="Casa" name="tipo_vivienda" value="Casa">
-                        <label for="casa"><img src="img/inicio.svg" alt=""><br><span>Casa</span></label>
+                        <label for="casa"><img src="../img/inicio.svg" alt=""><br><span>Casa</span></label>
                         <input type="radio" id="Habitacion" name="tipo_vivienda" value="Habitacion">
-                        <label for="habitacion"><img src="img/inicio.svg" alt=""><br><span>Habitacion</span></label>
+                        <label for="habitacion"><img src="../img/inicio.svg" alt=""><br><span>Habitacion</span></label>
                     </div>
                     <div class="flex-divcolumn-filtros">
                         <div class="flex-divcolumn-filtros">
@@ -151,7 +151,7 @@ $db->close();
                         while($row = mysqli_fetch_array($show)){
                             $publicacion = 'location.href="publicacion.php?id='.$row['ID_Publicacion'].'"';
                             echo '<div onclick='.$publicacion.' id='.$row['ID_Publicacion'].'><div class="imagen-publicacion">
-                                    <img src="img/inicio.svg" alt="">
+                                    <img src="../img/inicio.svg" alt="">
                                 </div>';
                             echo '<div class="info-publicacion">
                                     <p>'.$row['Titulo_Arriendo'].'</p>

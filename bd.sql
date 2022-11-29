@@ -182,7 +182,7 @@ ALTER TABLE `comentarios`
 -- Filtros para la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`ID_Favorito`) REFERENCES `publicacion` (`ID_Publicacion`),
+  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`ID_Publicacion`) REFERENCES `publicacion` (`ID_Publicacion`),
   ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`ID_Cuenta`) REFERENCES `cuenta` (`ID_Cuenta`);
 
 --

@@ -3,9 +3,9 @@
 session_start();
 
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
-    header("locate: Index.php");
+    header("locate: ../Index.php");
 } else {
-    $cuenta = "<a href='./subir_publicacion.php' class='boton-sesion'>Crear Publicación</a>";
+    $cuenta = "<a href='../Arriendos/subir_publicacion.php' class='boton-sesion'>Crear Publicación</a>";
 }
 
 ?>
@@ -15,20 +15,20 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/Arriendos-estilos.css">
-    <link rel="stylesheet" href="css/miperfil-estilos.css">
+    <link rel="stylesheet" href="../css/Arriendos-estilos.css">
+    <link rel="stylesheet" href="../css/miperfil-estilos.css">
     <title>Perfil De Usuario</title>
 </head>
 
 <body>   
     <header>
         <nav class="menu">
-            <a href="Index.php">Inicio</a>
-            <a href="Arriendos.php">Arriendos</a> 
-            <a href="Soporte.php">Soporte</a>
+            <a href="../Index.php">Inicio</a>
+            <a href="../Arriendos/Arriendos.php">Arriendos</a> 
+            <a href="../Soporte.php">Soporte</a>
             <?php echo $cuenta; ?>
             <input id="barra-buscador" type="search" placeholder="Buscar Arriendos..">
-            <input id="boton-buscador" type="image" src="img/lupa.png">
+            <input id="boton-buscador" type="image" src="../img/lupa.png">
         </nav>
     </header>
 
@@ -37,7 +37,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
 
             <!--Apartado izquierdo de la pagina (informacion actual del usuario)-->
             <div id="contenedor-foto-perfil">
-                <img src="./img/perfil.png" alt="">
+                <img src="../img/perfil.png" alt="">
             </div>
             <div id="contenedor-datos-usuario">
                 <p>  <?php	echo "Nombre: " . $_SESSION["Nombre"]?>  </p>
@@ -46,12 +46,12 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
                 <p><?php	echo "Correo Electronico: " . $_SESSION["Correo"]?></p>
                 <p><?php	echo "Numero: " . $_SESSION["Num_Contacto"]?></p>
                 <BR></BR>
-                <a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>
+                <a href='../registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>
 
 
             </div>
             <div id="contenedor-link-favoritos">
-                <a href="favoritos.php">Lista de Favoritos</a>
+                <a href="../Arriendos/favoritos.php">Lista de Favoritos</a>
             </div>
 
             <!--Apartado derecho de la pagina (editar informacion actual del usuario)-->
@@ -67,7 +67,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
                     <input type="submit" name="enviar" value="Aplicar Cambios" id="submit-nuevosdatos-usuario">
                     <BR></BR>
                     <BR></BR>
-                    <a href="./registro/reset_contraseña.php">Cambiar contraseña</a>
+                    <a href="../registro/reset_contraseña.php">Cambiar contraseña</a>
                 </form>
             </div>
 
