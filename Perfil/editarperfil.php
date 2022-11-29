@@ -24,12 +24,12 @@ if(isset($_SESSION["inicio"])){
 
 $response = array();
 if ($result) {
-    $response['success'] = HTTP_response_code();
-    echo'<p> Se realizó el cambio exitosamente</p>';
-    exit(json_encode($response));
+    $_SESSION["Nombre"] = $nombre_nuevo;
+    $_SESSION["Apellido"] = $apellido_nuevo;
+    $_SESSION["numero"] = $numero_nuevo;
+    echo "<script> alert('Se editaron los datos correctamente.'); location.href='miperfil.php'</script>";
 } else {
-    $response['success'] = HTTP_response_code() . $conn->error;
-    exit(json_encode($response));
+    echo "<script> alert('Hubo un error, intentelo más tarde.'); location.href='miperfil.php'</script>";
 }
 
 $conn->close();

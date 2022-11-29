@@ -47,14 +47,16 @@ $error_Titulo_Arriendo = $error_Tipo_Arriendo = $error_Valor = $error_Cant_Habit
         $Direccion = trim($_POST["Direccion"]);
     }
 
-    if(!empty(trim($_POST["Num_Depto"]))){
-        $error_Num_Depto = "Ingrese el Número de Departamento.";
-    } else {
+    if(empty(trim($_POST["Num_Depto"]))){
         $Num_Depto = NULL;
+    } else {
+        $Num_Depto = trim($_POST["Num_Depto"]);
     }
 
     if(!empty(trim($_POST["Descripcion"]))){
         $Descripcion = trim($_POST["Descripcion"]);
+    } else {
+        $Descripcion = NULL;
     }
 
     if(empty($error_Titulo_Arriendo) && empty($error_Tipo_Arriendo) && empty($error_Valor) && empty($error_Cant_Habitaciones)  && empty($error_Direccion) && empty($error_Num_Depto) && empty($error_Descripcion)){
@@ -75,7 +77,7 @@ $error_Titulo_Arriendo = $error_Tipo_Arriendo = $error_Valor = $error_Cant_Habit
             if($stmt->execute()){
                 echo "<script> alert('La publicación se realizó con exito'); location.href='Arriendos.php'</script>";
             } else {
-                echo "<script> alert('Ocurrió un error. Inténtelo más tarde.'); </script>";
+                echo "<script> alert('Ocurrió un error. Inténtelo más tarde.'); location.href='subir_publicacion.php'</script>";
             }
             
             $stmt->close();
@@ -101,7 +103,7 @@ $error_Titulo_Arriendo = $error_Tipo_Arriendo = $error_Valor = $error_Cant_Habit
         <nav class="menu">
             <a href="Index.php">Inicio</a>
             <a href="Arriendos.php">Arriendos</a> 
-            <a href="Soporte.php">Soporte</a>
+            <a href="../Soporte.php">Soporte</a>
             <?php echo $cuenta; ?>
             <input id="barra-buscador" type="search" placeholder="Buscar Arriendos..">
             <input id="boton-buscador" type="image" src="../img/lupa.png">

@@ -8,6 +8,8 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     $cuenta = "<a href='../Arriendos/subir_publicacion.php' class='boton-sesion'>Crear Publicación</a>";
 }
 
+require_once "../Conex.inc";
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -56,13 +58,13 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
 
             <!--Apartado derecho de la pagina (editar informacion actual del usuario)-->
             <div id="contenedor-editar-informacion">
-                <form action="" id="editar-informacion-formulario" method="post">
+                <form action="editarperfil.php" id="editar-informacion-formulario" method="post">
                     <label for="nombre-nuevo">Cambiar Nombre</label>
-                    <input type="text" name="nombrenuevo" required>
+                    <input type="text" name="nombrenuevo"  value="<?php echo $_SESSION['Nombre']; ?>" required>
                     <label for="apellido-nuevo">Cambiar Apellido</label>
-                    <input type="text" name="apellidonuevo" required>
+                    <input type="text" name="apellidonuevo" value="<?php echo $_SESSION['Apellido']; ?>" required>
                     <label for="numero-nuevo">Cambiar Número</label>
-                    <input type="text" name="numeronuevo" required>
+                    <input type="text" name="numeronuevo" value="<?php echo $_SESSION['Num_Contacto']; ?>" required>
                     <BR></BR>
                     <input type="submit" name="enviar" value="Aplicar Cambios" id="submit-nuevosdatos-usuario">
                     <BR></BR>

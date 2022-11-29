@@ -6,7 +6,7 @@ session_start();
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     header("locate: ../Index.php");
 } else {
-    $cuenta = "<a href='../registro/logout.php' class='boton-sesion'>Cerrar Sesión</a><br><a href='../Arriendos/subir_publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='./miperfil.php' class='boton-sesion'>Mi Perfil</a>";
+    $cuenta = "<a href='../Arriendos/subir_publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='../Perfil/miperfil.php' class='boton-sesion'>Mi Perfil</a>";
 }
 
 
@@ -31,12 +31,7 @@ $db->close();
     <title>Mis Favoritos</title>
 </head>
 
-<body>   
-    <script>
-        function confirmarcion(){
-
-        }
-    </script>
+<body>
     <header>
         <nav class="menu">
             <a href="../Index.php">Inicio</a>
@@ -49,10 +44,10 @@ $db->close();
             </form>
         </nav>
     </header>
-
             <!--PUBLICACIÓN FAVORITA-->
             <div class="main-div-publicaciones">
                 <div class="grid-div-publicaciones">
+
                     <?php
                     $numeros = mysqli_num_rows($show);
 
@@ -60,7 +55,22 @@ $db->close();
                         echo "<h1>No ha guardado ninguna publicación en favoritos</h1>";
                     } else {
                         while($row = mysqli_fetch_array($show)){
-                            $publicacion = 'location.href="favoritos.php?id='.$row['ID_Publicacion'].'"';
+                            $eliminar = "<script>
+                            function confirmarcion".$row['ID_Favorito']."(){
+                                var id = ".$row['ID_Favorito']."
+                                var respuesta = confirm('¿Quiere eliminar esta publicación de su lista de favoritos?');
+                    
+                                if(respuesta){
+                                    window.location = 'eliminar.php?id=".$row['ID_Favorito']."';
+                                } else {
+                                    alert('La publicación no ha sido eliminada.');
+                                }
+                            }
+                            </script>";
+
+                            echo $eliminar;
+
+                            $publicacion = 'location.href="publicacion.php?id='.$row['ID_Publicacion'].'"';
                             echo '<div onclick='.$publicacion.'><div class="imagen-publicacion">
                                     <img src="../img/inicio.svg" alt="">
                                 </div>';
@@ -70,7 +80,7 @@ $db->close();
                                     <p>$'.$row['Valor'].'</p>
                                     <p>'.$row['Cant_Habitaciones'].' Habitación(es)</p>
                                 </div></div>
-                                <a href="eliminar.php?id='.$row['ID_Favorito'].'" onclick="confirmarcion()" class="eliminar_favoritos">Eliminar de Favoritos</a>';
+                                <input type="button" value="Eliminar de Favoritos" onclick="confirmarcion'.$row['ID_Favorito'].'()" class="eliminar_favoritos">';
                         }
                     }
                     ?>                  

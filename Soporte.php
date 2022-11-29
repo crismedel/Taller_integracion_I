@@ -3,10 +3,12 @@
 session_start();
 
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
-    $cuenta = "<a href='../registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
+    $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
 } else {
-    $cuenta = "<a href='../registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>";
+    $cuenta = "<a href='./Arriendos/subir_publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='./Perfil/miperfil.php' class='boton-sesion'>Mi Perfil</a>";
 }
+
+require_once "Conex.inc";
 
 ?>
 <!DOCTYPE html>
