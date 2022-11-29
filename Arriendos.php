@@ -150,15 +150,15 @@ $db->close();
                     } else {
                         while($row = mysqli_fetch_array($show)){
                             $publicacion = 'location.href="publicacion.php?id='.$row['ID_Publicacion'].'"';
-                            echo '<button onclick='.$publicacion.'><div class="imagen-publicacion">
+                            echo '<div onclick='.$publicacion.' id='.$row['ID_Publicacion'].'><div class="imagen-publicacion">
                                     <img src="img/inicio.svg" alt="">
                                 </div>';
-                            echo '<div id='.$row['ID_Publicacion'].' class="info-publicacion">
+                            echo '<div class="info-publicacion">
                                     <p>'.$row['Titulo_Arriendo'].'</p>
                                     <p>'.$row['Tipo_Arriendo'].'</p>
                                     <p>$'.$row['Valor'].'</p>
                                     <p>'.$row['Cant_Habitaciones'].' Habitación(es)</p>
-                                </div></button>';
+                                </div></div>';
                         }
                     }
                     ?>

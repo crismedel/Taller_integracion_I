@@ -50,7 +50,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
 
             </div>
             <div id="contenedor-link-favoritos">
-                <a href="#">Lista de Favoritos</a>
+                <a href="favoritos.php">Lista de Favoritos</a>
             </div>
 
             <!--Apartado derecho de la pagina (editar informacion actual del usuario)-->
