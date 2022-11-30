@@ -1,3 +1,4 @@
+
 *{
     margin: 0;
     padding: 0;
@@ -6,17 +7,18 @@
 
 /* Elementos del header (menu de navegacion)*/
 header {
-    background-color: gray;
+    background-color:#9f8ad0;
     position: relative;
 }
-.menu{
+.menu {
+    color: white;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    background-color: lightgoldenrodyellow;
+    background-color: #9f8ad0;
     width: 100%;
-    padding-right: 30px ;
+    padding-right: 30px;
+    justify-content: space-around;
 }
 .menu a {
     padding: 30px;
@@ -26,7 +28,8 @@ header {
 }
 
 a:hover {
-    background-color: aquamarine;
+    background-color: rgba(255, 255, 255, 0.559);
+    border-radius: 50%;
 }
 
 #barra-buscador {
@@ -34,6 +37,7 @@ a:hover {
     height: 30px;
     width: 300px;
     border-radius: 4px;
+    cursor:pointer;
 }
 
 #boton-buscador {
@@ -44,28 +48,49 @@ a:hover {
 
 /* div main y div form*/
 main {
-    background: rgba(0, 0, 0, .3);
+    height: 70vh;/*del 100% de la pantalla */
+    background-image: linear-gradient(to top, rgba(178, 36, 239, 0.2) 0%, rgba(117, 122, 255, 0.2) 100%), url(../img/dormitorio.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 .main-div-soporte{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
-    position: relative;
-    top: 100px;/*espacio entre header y footer */
-    padding-bottom: 100px;
-    margin-left: 550px;
+    margin-left: 600px;
+    display: block;
+    color:#ffffff;
+    width: 460px; 
+    height: auto;
+    border-radius: 10px;  
+    padding: 40px 40px 40px 40px;  
+    background:linear-gradient(to top, rgba(172, 30, 233, 0.5) 0%, rgba(36, 43, 253, 0.5) 100%);
+   
+}
+
+.flex-divrow-soporte, input, label {
+    color: white;
+    display: flex;   
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    border-radius: 7px;
+    cursor: pointer; 
+    padding: 5px;
+    border: none;    
     
+
+}
+.contenedor{
+    width: 90%;
+    max-width: 1200px;
+    overflow: hidden;
+    margin:auto;
+    padding: 60px 0;/*espaciado de los elementos*/
 }
 
-.flex-divrow-soporte,input, label { /*elementos en fila dentro del formulario (labels incluidas)*/
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+#boton{
+    padding:2px;
+    color:black;
 }
-
-
 
 /*formulario en si*/
 
@@ -76,8 +101,10 @@ input, select, textarea { /*formato general de los inputs*/
     height: 30px;
 }
 
+
 #mensaje { /*textarea pero aparte */
     height: 250px;
+    border-radius: 5px;
 }
 
 
@@ -101,7 +128,7 @@ input, select, textarea { /*formato general de los inputs*/
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    background-color: red;
+    background-color: rgb(197, 21, 21);
     border-radius: 5px;
     max-height: 180px;
 }
@@ -130,30 +157,10 @@ input, select, textarea { /*formato general de los inputs*/
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* estilos de footer solucionarlo*/
 footer{
     background:#9f8ad0;
     padding-bottom: 0.1px;
-    position: relative;
 }
 .footer-content{
     display:flex;

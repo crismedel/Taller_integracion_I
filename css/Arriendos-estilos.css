@@ -9,24 +9,45 @@ header {
     background-color: gray;
     position: relative;
 }
-.menu{
+body{
+    color:black;
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    font-family: 'Sansita', sans-serif;
+}
+main {
+    height: 70vh;/*del 100% de la pantalla */
+   
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+.menu {
+    color: white;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    background-color: lightgoldenrodyellow;
+    background-color: #9f8ad0;
     width: 100%;
-    padding-right: 30px ;
+    padding-right: 30px;
+    justify-content: space-around;
 }
 .menu a {
     padding: 30px;
     text-decoration: none;
     color: black;
     transition: .5s;
+    border-radius: 50%;
 }
 
+
 a:hover {
-    background-color: aquamarine;
+    background-color: rgba(255, 255, 255, 0.559);
+    border-radius: 50%;
+}
+label,input{
+    border-radius: 10px;
+    padding-block: 2px;
 }
 
 #barra-buscador {
@@ -34,10 +55,11 @@ a:hover {
     height: 30px;
     width: 300px;
     border-radius: 4px;
+    border-radius: 10px;
 }
 
 #boton-buscador {
-    width: 25px;
+    width: 54px;
     height: 25px;
     margin-right: 50px;
 }
@@ -130,7 +152,13 @@ p {
     max-width: 400px; /*limites del texto*/
 }
 
-
+.contenedor{
+    width: 90%;
+    max-width: 1200px;
+    overflow: hidden;
+    margin:auto;
+    padding: 60px 0;/*espaciado de los elementos*/
+}
 
 /* estilos de footer solucionarlo*/
 footer{

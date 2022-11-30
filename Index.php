@@ -114,8 +114,11 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
         </div>
         </section>
        </section>
-
-   
+       <section  id="contacto" class="form-contact">
+       
+       <a  style="color:transparent"href="Soporte.php"><input id="soporte" type="submit" value="¡SOPORTE!" ></a>
+        
+       </section>
     </main>
   
     <footer id="contacto">

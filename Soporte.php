@@ -25,6 +25,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/Soporte-estilos.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Soporte</title>
 </head>
 <body>
@@ -73,15 +74,16 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     <footer id="contacto">
         <div class="contenedor footer-content">
             <div class="contact-us">
-                <h2 class="Marca">Proyecto Semestral</h2>
-             <p> Taller de integracion I</p>
+                <i class='bx bx-fade-right' > <h2 class="Marca">Proyecto Semestral</h2> </i>
+               <br>
+                <i class='bx bx-fade-left' ><p>  Taller de integracion I</p></i>
             </div>
             <div class="social-media">
                 <a href="./" class="social-media-icon">
                     <i class='bx bxl-whatsapp'></i>
                 </a>
                 <a href="./" class="social-media-icon">
-                    <i class='bx bxl-facebook'></i>
+                    <i class='bx bxl-facebook-square'></i>
                 </a>
                 <a href="./" class="social-media-icon">
                     <i class='bx bxl-instagram'></i>
