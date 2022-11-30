@@ -7,7 +7,7 @@ session_start();
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
 } else {
-    $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>";
+    $cuenta = "<a href='../Arriendos/subir_publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='../Perfil/miperfil.php' class='boton-sesion'>Mi Perfil</a>";
 }
     $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
     $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
@@ -32,7 +32,7 @@ if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     <header>
         <nav class="menu">
             <a href="Index.php">Inicio</a>
-            <a href="Arriendos.php">Arriendos</a> 
+            <a href="./Arriendos/Arriendos.php">Arriendos</a> 
             <a href="Soporte.php">Soporte</a>
             <?php echo $cuenta; ?>
             <input id="barra-buscador" type="search" placeholder="Buscar Arriendos..">

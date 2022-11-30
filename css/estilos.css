@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -61,7 +63,7 @@ header{
     right:0;
     width:30vw;/*ando de la pagina*/
     height:100%;
-    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    background:linear-gradient(to top, rgba(172, 30, 233, 0.877) 0%, rgba(36, 43, 253, 0.976) 100%);
     display: flex;
     flex-direction: column;
     justify-content:space-evenly;/*reparta espacio de forma equitativa*/
@@ -71,64 +73,7 @@ header{
     box-shadow:0 0 6px rgba(0, 0, 0,.5);
 
 }
-
-
-
-
-/*Ventana emergente del login*/
-
-.contenedor-popup {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
-    position: fixed;
-    top: 250px;/*espacio entre header y footer */
-    margin-bottom: 100px;/*espacio entre header y footer */
-    margin-left: 550px;
-    visibility: hidden; /*modificar con js*/
-}
-
-
-.ventana-emergente-login {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    background-color: red;
-    border-radius: 5px;
-    max-height: 180px;
-}
-
-.flex-divrow-popup{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.flex-divrow-popup > p {
-    margin-top: 20px;
-    margin-right: 140px;
-
-}
-
-.flex-divrow-popup > button > img {
-    width: 20px;
-    height: 20px;
-    
-}
-
-.flex-divrow-popup > a {
-    padding-right: 7px;
-}
-
-
-
-
-
-
-
+ 
 
 .elemento{
     transform: translate(0);
@@ -261,10 +206,59 @@ header{
     width: 100%;
     font-weight: 400;
 }
+/*estilos del formulario*/
+.form-contact {
+    width: 102px;
+    height: 0px;
+    padding-left: 128px;
+    padding-right:-183px;
+    padding-bottom: 150px;
+    padding-top: 140px;
+    margin-top: 100px;
+    margin-left: 600px;
+    margin-bottom: 200px;
+    color: #ffffff;
+    background: linear-gradient(to top, rgba(172, 30, 233, 0.5) 0%, rgba(36, 43, 253, 0.5) 100%);
+    box-shadow: 7px 13px 37px rgb(0 0 0);
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+}
+
+input,label,textarea{
+    cursor: pointer;    
+    border-radius: 5px;
+    justify-content: space-evenly;
+    display:block;
+    align-content:space-between;
+    padding: 5px;
+    border: none;    
+
+}
+
+#soporte {
+    margin-left: 600px;
+    padding: 40px 40px 40px 40px;
+    width: 601px;
+    height: 292px;
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+    font-family: 'Xanh Mono', monospace;
+    cursor: pointer;
+    background: linear-gradient(to top, rgba(172, 30, 233, 0.5) 0%, rgba(36, 43, 253, 0.5) 100%);
+    box-shadow: 7px 13px 37px rgb(0 0 0);
+}
+
+
 /* estilos de footer*/
 footer{
-    background:#9f8ad0;
+    background:linear-gradient(to top, rgba(172, 30, 233, 0.5) 0%, rgba(36, 43, 253, 0.5) 100%);
     padding-bottom: 0.1px;
+    
+
 }
 .footer-content{
     display:flex;
@@ -273,12 +267,14 @@ footer{
     flex-wrap: wrap;
     padding-top: 60px;
     padding-bottom: 40px;
+    
 
 }
 .contact-us{
     width: 40%;
     color:white;
 }
+
 .marca{
     font-weight: 500;
     font-size: 40px ;
@@ -290,6 +286,7 @@ footer{
     width: 50%;
     display: flex;
     justify-content: flex-end;
+    flex-wrap:wrap;
 }  
 .social-media-icon{
     display: inline-block;
@@ -307,7 +304,9 @@ footer{
 }
 .social-media-icon i{
     font-size: 30px;
-    line-height:60px;    
+    line-height:60px;
+    
+  
 }
 #line{
     width: 90%;
@@ -318,20 +317,5 @@ footer{
     margin-bottom: 60px;
     
 }
-.form-contact{
-    width: auto;
-    height: 50px;
-    top:50%;
-    left:50%;
-    
-    box-shadow: 7px 13px 37px rgba(0,0,0);
-    color: white;
-    display:flex;
-    justify-content: space-evenly;
-    align-items:center;
-    flex-wrap:wrap;
-    background:linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
-    
-    
-}
+
 
