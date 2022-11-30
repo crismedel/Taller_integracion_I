@@ -93,7 +93,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     if(empty($error_nombre) && empty($error_apellido) && empty($error_correo) && empty($error_cel)  && empty($error_contraseña) && empty($error_confirmar_contraseña)){
-        $sql = "INSERT INTO cuenta (Nombre, Apellido, Fecha_Nacimiento, Genero, Correo, Contraseña, Num_Contacto, Tipo_Usuario) VALUES (?, ?, ?, ?, ? ,? ,?, ?)";
+        $sql = "INSERT INTO cuenta (Nombre, Apellido, Fecha_Nacimiento, Genero, Correo, Contrasena, Num_Contacto, Tipo_Usuario) VALUES (?, ?, ?, ?, ? ,? ,?, ?)";
 
         if($stmt = $db->prepare($sql)){
             $stmt->bind_param("ssssssss", $param_nombre, $param_apellido, $param_fecha_nacimiento, $param_genero, $param_correo, $param_contraseña, $param_cel, $param_tipo_usuario);
