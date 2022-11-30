@@ -1,15 +1,22 @@
 <?php
+ 
+include_once 'Conex.inc';
 
 session_start();
 
 if(!isset($_SESSION["inicio"]) || $_SESSION["inicio"] !== true){
     $cuenta = "<a href='./registro/login.php' class='boton-sesion'>Iniciar Sesión</a>";
 } else {
-    $cuenta = "<a href='./Arriendos/subir_publicacion.php' class='boton-sesion'>Crear Publicación</a><a href='./Perfil/miperfil.php' class='boton-sesion'>Mi Perfil</a>";
+    $cuenta = "<a href='./registro/logout.php' class='boton-sesion'>Cerrar Sesión</a>";
 }
-
-require_once "Conex.inc";
-
+    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
+    $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
+    $motivo = isset($_POST['motivo']) ? $_POST['motivo'] : '';
+    $asunto = isset($_POST['asunto']) ? $_POST['asunto'] : '';
+    $mensaje = isset($_POST['mensaje']) ? $_POST['mensaje'] : '';
+    
+    $query = "INSERT INTO soporte(Nombre, Correo, Motivo, Asunto, Mensaje) VALUES('$nombre','$correo','$motivo', '$asunto','$mensaje')";
+    $ejecutar = mysqli_query($db, $query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +31,7 @@ require_once "Conex.inc";
     <header>
         <nav class="menu">
             <a href="Index.php">Inicio</a>
-            <a href="./Arriendos/Arriendos.php">Arriendos</a> 
+            <a href="Arriendos.php">Arriendos</a> 
             <a href="Soporte.php">Soporte</a>
             <?php echo $cuenta; ?>
             <input id="barra-buscador" type="search" placeholder="Buscar Arriendos..">
@@ -36,28 +43,31 @@ require_once "Conex.inc";
 
         <div class="main-div-soporte">
             <div class="flex-divrow-soporte">
-                    <form action="" id="formulario-soporte">
+                    <form method= "POST" id="formulario-soporte">
+                        <label for="nombre">Nombre</label>
+                        <input id="nombre" type="text" name="nombre" required>
+
                         <label for="correo">Correo Electronico</label>
-                        <input id="correo" type="email" required>
+                        <input id="correo" type="email" name="correo" required>
     
                         <label for="eleccion-soporte">¿Cual es el motivo del mensaje?</label>
-                        <select name="" id="eleccion-soporte">
+                        <select name="motivo" id="eleccion-soporte">
                             <option value="sugerencia">Sugerencia</option>
                             <option value="denuncia">Denuncia</option>
                             <option value="testimonio">Testimonio</option>
                             <option value="otro">Otro</option>
                         </select>
 
-                        <label for="asunto">Asunto</label>
-                        <input id="asunto" type="text">
-                        <label for="mensaje">Mensaje</label>
-                        <textarea name="" id="mensaje"></textarea>
+                        <label for="correo">Asunto</label>
+                        <input id="asunto" type="text" name="asunto" required>
 
-                        <input type="submit" value="Enviar">
-                  </form>
+                        <label for="mensaje">Mensaje</label>
+                        <textarea name="mensaje" id="mensaje"></textarea>
+
+                        <input type="submit" class="btn" value="Enviar" name="enviar">
+                    </form>
             </div>
         </div>
-
     </main>
     <!--Solucionar el footer-->
     <footer id="contacto">

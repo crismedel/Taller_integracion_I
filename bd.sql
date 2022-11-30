@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2022 a las 23:20:37
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Host: 192.168.4.20
+-- Generation Time: Nov 30, 2022 at 02:10 AM
+-- Server version: 10.6.10-MariaDB
+-- PHP Version: 7.4.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `pagina_web`
+-- Database: `A2022_tcurihual`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comentarios`
+-- Table structure for table `comentarios`
 --
 
 CREATE TABLE `comentarios` (
@@ -38,7 +38,7 @@ CREATE TABLE `comentarios` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cuenta`
+-- Table structure for table `cuenta`
 --
 
 CREATE TABLE `cuenta` (
@@ -48,7 +48,7 @@ CREATE TABLE `cuenta` (
   `Fecha_Nacimiento` date DEFAULT NULL,
   `Genero` enum('Hombre','Mujer','No Especifica') NOT NULL,
   `Correo` varchar(45) DEFAULT NULL,
-  `Contraseña` varchar(255) DEFAULT NULL,
+  `Contrasena` varchar(255) DEFAULT NULL,
   `Num_Contacto` varchar(15) DEFAULT NULL,
   `Tipo_usuario` enum('Arrendador','Estudiante') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -56,7 +56,7 @@ CREATE TABLE `cuenta` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `favoritos`
+-- Table structure for table `favoritos`
 --
 
 CREATE TABLE `favoritos` (
@@ -68,7 +68,7 @@ CREATE TABLE `favoritos` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `publicacion`
+-- Table structure for table `publicacion`
 --
 
 CREATE TABLE `publicacion` (
@@ -77,7 +77,7 @@ CREATE TABLE `publicacion` (
   `Titulo_Arriendo` varchar(255) DEFAULT NULL,
   `Direccion` varchar(50) DEFAULT NULL,
   `Num_Depto` int(4) DEFAULT NULL,
-  `Tipo_Arriendo` enum('Departamento', 'Casa', 'Habitacion') NULL,
+  `Tipo_Arriendo` enum('Departamento','Casa','Habitacion') DEFAULT NULL,
   `Cant_Habitaciones` int(5) DEFAULT NULL,
   `Descripcion` varchar(255) DEFAULT NULL,
   `Valor` int(6) DEFAULT NULL
@@ -86,11 +86,12 @@ CREATE TABLE `publicacion` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `soporte`
+-- Table structure for table `soporte`
 --
 
 CREATE TABLE `soporte` (
   `ID_Soporte` int(11) NOT NULL,
+  `Nombre` varchar(60) DEFAULT NULL,
   `Correo` varchar(45) DEFAULT NULL,
   `Motivo` varchar(255) DEFAULT NULL,
   `Asunto` varchar(255) DEFAULT NULL,
@@ -98,95 +99,96 @@ CREATE TABLE `soporte` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `comentarios`
+-- Indexes for table `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`ID_Comentario`),
   ADD KEY `ID_Publicacion` (`ID_Publicacion`);
 
 --
--- Indices de la tabla `cuenta`
+-- Indexes for table `cuenta`
 --
 ALTER TABLE `cuenta`
   ADD PRIMARY KEY (`ID_Cuenta`);
 
 --
--- Indices de la tabla `favoritos`
+-- Indexes for table `favoritos`
 --
 ALTER TABLE `favoritos`
   ADD PRIMARY KEY (`ID_Favorito`),
-  ADD KEY `ID_Cuenta` (`ID_Cuenta`);
+  ADD KEY `ID_Cuenta` (`ID_Cuenta`),
+  ADD KEY `favoritos_ibfk_1` (`ID_Publicacion`);
 
 --
--- Indices de la tabla `publicacion`
+-- Indexes for table `publicacion`
 --
 ALTER TABLE `publicacion`
   ADD PRIMARY KEY (`ID_Publicacion`),
   ADD KEY `ID_Cuenta` (`ID_Cuenta`);
 
 --
--- Indices de la tabla `soporte`
+-- Indexes for table `soporte`
 --
 ALTER TABLE `soporte`
   ADD PRIMARY KEY (`ID_Soporte`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `comentarios`
+-- AUTO_INCREMENT for table `comentarios`
 --
 ALTER TABLE `comentarios`
   MODIFY `ID_Comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `cuenta`
+-- AUTO_INCREMENT for table `cuenta`
 --
 ALTER TABLE `cuenta`
-  MODIFY `ID_Cuenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Cuenta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `favoritos`
+-- AUTO_INCREMENT for table `favoritos`
 --
 ALTER TABLE `favoritos`
   MODIFY `ID_Favorito` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `publicacion`
+-- AUTO_INCREMENT for table `publicacion`
 --
 ALTER TABLE `publicacion`
   MODIFY `ID_Publicacion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `soporte`
+-- AUTO_INCREMENT for table `soporte`
 --
 ALTER TABLE `soporte`
   MODIFY `ID_Soporte` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `comentarios`
+-- Constraints for table `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`ID_Publicacion`) REFERENCES `publicacion` (`ID_Publicacion`);
 
 --
--- Filtros para la tabla `favoritos`
+-- Constraints for table `favoritos`
 --
 ALTER TABLE `favoritos`
   ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`ID_Publicacion`) REFERENCES `publicacion` (`ID_Publicacion`),
   ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`ID_Cuenta`) REFERENCES `cuenta` (`ID_Cuenta`);
 
 --
--- Filtros para la tabla `publicacion`
+-- Constraints for table `publicacion`
 --
 ALTER TABLE `publicacion`
   ADD CONSTRAINT `publicacion_ibfk_1` FOREIGN KEY (`ID_Cuenta`) REFERENCES `cuenta` (`ID_Cuenta`);
